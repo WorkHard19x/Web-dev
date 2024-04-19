@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/CSS/contract.css">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<title>Contract</title>
+<style>
+  .search-results-container {
+    width: 99%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10% 1px ;
+    height: 100%;
+    top:50px;
+    border: 1px solid transparent;
+    position: relative;
+    justify-content: center; 
+    background-color: transparent;
+  }
+  section{
+    position: relative;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid rgba(225, 225, 225, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 5rem;
+    top: -55px;
+}
+h1{
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    max-width: 310px;
+    border-bottom: 2px solid white;
+}
+.inputbox label{
+    position:absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+input:focus ~ label,
+input:valid ~label{
+    top:5px;
+}
+.inputbox input{
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: white;
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: white;
+    font-size: 1.2rem;
+    top:20px;
+}
+.forget{
+    margin: 35px 0;
+    font-size: 0.85rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.forget label{
+    display: flex;
+    align-items: center;
+}
+.forget label input{
+    margin-right: 3px;
+}
+.forget a{
+    color:white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.forget a:hover{
+    text-decoration: underline;
+}
+section button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgba(225, 225, 225, 1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+section button:hover{
+    background-color: rgb(225, 225,225,0.5);
+}
+.register{
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: underline;
+    color: rgb(7, 243, 66);
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
+}
+
+  @media screen and (max-width: 1000px) {
+
+    .search-results-container {
+    width: 99%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20% 1px ;
+    height: 100%;
+    top:66px;
+    border: 1px solid transparent;
+    position: relative;
+    justify-content: center; 
+    background-color: transparent;
+  }
+
+  }
+  @media screen and (max-width:350px) {
+        .search-results-container {
+          width: 99%; 
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 20% 1px ;
+          height: 100%;
+          top:66px;
+          border: 1px solid transparent;
+          position: relative;
+          justify-content: center; 
+          background-color: transparent;
+        }    
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    .input-message{
+    position: relative;
+    margin: 20px 0;
+    max-width: 310px;
+    }
+    .input-message textarea{
+        max-width: 310px;
+        min-height: 100px;
+    }
+    .input-message ion-icon{
+    right: 8px;
+    color: white;
+    font-size: 1.2rem;
+}
+</style>
+</head>
+<body>
+
+    <header class="header">
+        <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+        <a href="/index" class="title-color" >
+          <span class="W">W</span>
+          <span class="O">O</span>
+          <span class="R">R</span>
+          <span class="K">K</span>
+          <span class="H">H</span>
+          <span class="A">A</span>
+          <span class="Rr">R</span>
+          <span class="D">D</span>
+          
+      </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li class="search">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+               <button onclick="searchPosts()" class="search-button">Search</button>
+            </li>
+            <li><a href="/index">Home</a></li>
+            <li class="dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                <div id="aboutDropdown" class="dropdown-content">
+                <div class="dropdown-content">
+                    <a href="/math">Mathematics</a>
+                    <a href="/physics">Physics</a>
+                    <a href="/code">Code</a>
+                </div>
+            </li>
+            <li><a href="/about"  id="about-link">About</a></li>
+            <li><a href="/contract" id="contract-link">Contact</a></li>
+            <li class="user-dropdown-container">
+              {% if user_name %}
+              <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+              <div id="userDropdown" class="user-dropdown-content">
+                  <a href="/profile">Profile</a>
+                  <a href="/security">Security</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+              </div>
+              {% else %}
+              <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+              {% endif %}
+          </li>
+        </ul>
+        
+    </header>
+
+
+
+
+
+
+
+<div class="search-results-container">
+    <section>
+      <form id="contact-form" action="{{ url_for('contract') }}" method="POST"> <!-- Specify action using url_for -->
+        <h1>Contact</h1>
+        <div class="inputbox">
+          <ion-icon name="person-outline"></ion-icon>
+          <input type="text" id="name" name="name" required autocomplete="off"><br>
+          <label for="Name">Name</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <input type="email" id="email" name="email" required autocomplete="off"><br>
+            <label for="email">Email</label>
+        </div>
+        <div class="inputbox">
+            <ion-icon name="book-outline"></ion-icon>
+            <input type="text" id="category" name="category" required autocomplete="off"><br> <!-- Change id to 'category' -->
+            <label for="category">Category</label> <!-- Change 'text' to 'category' -->
+        </div>
+        <a style="font-size: 1rem; color: rgb(202, 203, 204);">Math,Physics,Code,etc.</a><br>
+        <div class="inputbox">
+            <ion-icon name="call-outline"></ion-icon>
+            <input type="number" id="phone" name="phone" autocomplete="off"><br>
+            <label for="phone">Phone</label>
+        </div>
+        <div class="inputbox">
+            <label for="image"></label>
+            <input type="file" id="image" name="image" accept=".pdf,.docx"><br> 
+        </div>
+        <div class="input-message">
+            <label for="message" style="color:white">Message:</label> <!-- Change 'text' to 'message' -->
+            <ion-icon name="document-text-outline"></ion-icon>
+            <textarea id="message" name="message" style="font-size: 16px;" rows="4" cols="50" required autocomplete="off"
+             placeholder="Please describe what you need."></textarea><br> <!-- Change 'text' to 'message' -->
+        </div>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
+    </section>
+  </div>
+  
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Client-side validation
+        var form = document.getElementById('contact-form');
+        if (!form.checkValidity()) {
+            // Form is invalid
+            return;
+        }
+
+        // Send form data to Flask backend using AJAX
+        fetch("{{ url_for('contract') }}", {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error('Failed to submit form. Please try again later.');
+        })
+        .then(data => {
+            alert(data); // Display success message
+            form.reset(); // Reset form after successful submission
+            setTimeout(() => {
+                location.reload(); // Reload the page after a short delay
+            }, 1000); // Adjust the delay time as needed (1000 milliseconds = 1 second)
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Failed to submit form. Please try again later.');
+        });
+    });
+</script>
+
+
+<script src="/static/js/script.js"></script>
+
+  
+<footer>
+    <p>&copy; 2024 WorkHard. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/physic.css">
+        <title>Physics</title>
+      </head>
+    <body>
+
+        <!-- header -->
+        <header class="header">
+          <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+          <a href="/index" class="title-color" >
+            <span class="W">W</span>
+            <span class="O">O</span>
+            <span class="R">R</span>
+            <span class="K">K</span>
+            <span class="H">H</span>
+            <span class="A">A</span>
+            <span class="Rr">R</span>
+            <span class="D">D</span>
+            
+        </a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+          <ul class="menu">
+              <li class="search">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                 <button onclick="searchPosts()" class="search-button">Search</button>
+              </li>
+              <li><a href="/index">Home</a></li>
+              <li class="dropdown">
+                  <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                  <div id="aboutDropdown" class="dropdown-content">
+                  <div class="dropdown-content">
+                      <a href="/math">Mathematics</a>
+                      <a href="/physics">Physics</a>
+                      <a href="/code">Code</a>
+                  </div>
+              </li>
+              <li><a href="/about"  id="about-link">About</a></li>
+              <li><a href="/contract" id="contract-link">Contact</a></li>
+              <li class="user-dropdown-container">
+                {% if user_name %}
+                <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                <div id="userDropdown" class="user-dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/security">Security</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                {% else %}
+                <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                {% endif %}
+            </li>
+          </ul>
+          
+      </header>
+      
+        <!-- Slidershow -->
+ 
+        <style>
+          .test1 {
+            width: 70%; 
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px 20px ;
+            background-color: black;
+            position: relative;
+            justify-content: center; 
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .news {
+            width: 70%;  
+            background-color: rgb(107, 105, 105);
+            padding: 10px 20px ;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            display: flex;
+            top: 11;
+          }
+
+          .news span{
+           color: rgb(248, 86, 86);
+           font-size: 18px;
+           font-weight:bold;
+          }
+
+          .news2 {
+            width: 70%;  
+            background-color: rgb(107, 105, 105);
+            padding: 40px 20px ;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+          }
+          .news2 .update{
+           width: 25%;
+           /* border: 1px solid red; */
+           background-color: rgb(138, 136, 136);
+           border-radius: 20px;
+           padding: 20px 20px;
+           text-align: center;
+          }
+          .news2 span{
+           color: rgb(247, 223, 9);
+           font-size: 28px;
+           font-weight:bold;
+
+          }
+          
+          
+          .test2{
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            padding: 10px 15px; 
+            flex-wrap: wrap;
+            display: inline-block;
+            box-sizing: border-box;
+            background-color:  rgb(107, 105, 105);
+            /* border: 1px solid #fa0909;  */
+            justify-content: space-between;
+            display: block; /* Initially hide all test2 elements */
+
+          }
+
+          .test1 img {
+            width: 100%; /* Ensure image fits within its container */
+            height: 250px;
+          }
+          .test2 span {
+            color:rgb(250, 161, 101); /* Ensure image fits within its container */
+            font-weight:bold;
+          }
+          .test2 span p{
+            padding-left: 8px;
+          }
+          .test2  .time-ago{
+            padding-left: 8px;
+          }
+          .test2 .post-link{
+            text-decoration: none;
+          }
+         
+        @media screen and (max-width: 1000px) {
+            .test2 span {
+            font-size: 12px;
+            color:rgb(250, 161, 101); /* Ensure image fits within its container */
+          }
+          .test1 {
+              display: flex;
+              flex-wrap: wrap;
+              border: 0.1px solid rgb(7, 7, 7);
+              background-color: black;
+              position: relative;
+              justify-content: center; 
+              width: 99%;
+              padding: 1px 1px ;
+              
+            }
+          .test2{
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            padding: 1px 1px; 
+            flex-wrap: wrap;
+            display: inline-block;
+            box-sizing: border-box;
+            background-color:  rgb(107, 105, 105);
+            /* border: 1px solid #fa0909;  */
+            justify-content: space-between;
+            display: block; /* Initially hide all test2 elements */
+
+          }
+          .test1 img {
+            max-width: 100%; /* Ensure image fits within its container */
+            max-height: 150px;
+          }
+        }
+        @media screen and (max-width:350px) {
+            .test2 span {
+            font-size: 1px;
+            color:rgb(250, 161, 101); /* Ensure image fits within its container */
+          }
+          .test1 {
+              display: flex;
+              flex-wrap: wrap;
+              border: 0.1px solid rgb(7, 7, 7);
+              background-color: black;
+              position: relative;
+              justify-content: center; 
+              width: 93.5%;
+              
+            }
+        }
+        
+        </style>
+        <div class="news">
+            <div class="update">
+              <span></span></br>
+              <span></span></br>
+            </div>
+        </div>
+        <div class="news2">
+            <div class="update">
+              <span>Physics</span>
+            </div>
+        </div>
+        <div class="test1">
+          <div class="test2" data-title="">
+            <a href="/py1" class="post-link">
+            <span><img src="/static/assit/physic/physic.jpg" alt=""></span>
+            <span><p>'Surprising' hidden activity of semiconductor material spotted by researchers</p></span>
+            <span class="time-ago" data-timestamp="2024-04-14T17:00:00Z"></span>
+            </a>
+          </div>
+
+          <div class="test2" data-title="">
+            <a href="/py2" class="post-link">
+            <span><img src="/static/assit/physic/study-uses-thermodynam.jpg" alt=""></span>
+            <span><p>Study uses thermodynamics to describe expansion of the universe
+            </p></span>
+            <span class="time-ago" data-timestamp="2024-04-14T12:00:00Z"></span>
+            </a>
+          </div>
+
+          <div class="test2" data-title="">
+            <a href="/py3" class="post-link">
+            <span><img src="/static/assit/physic/Internet can achieve quantum speed with light saved as sound.jpg" alt=""></span>
+            <span><p>Internet can achieve quantum speed with light saved as sound
+            </p></span>
+            <span class="time-ago" data-timestamp="2024-04-14T10:00:00Z"></span>
+            </a>
+          </div>
+
+          
+
+
+          
+
+          
+          <!-- Pagination -->
+  <div id="pagination-container">
+    <ul class="pagination" id="pagination">
+    </ul>
+  </div>
+        
+  </div>
+
+<!-- Pagination -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const postsPerPage = 9;
+    const posts = document.querySelectorAll('.test2');
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+    const pageLinks = [
+        "/physics",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "p9",
+        "p10",
+        // Add more page links as needed
+    ];
+    // Function to show the appropriate posts for the current page
+    function showPostsForPage(pageIndex) {
+        posts.forEach((post, index) => {
+            if (index >= pageIndex * postsPerPage && index < (pageIndex + 1) * postsPerPage) {
+                post.style.display = 'block';
+            } else {
+                post.style.display = 'none';
+            }
+        });
+    }
+    if (totalPages > 1) {
+        const paginationContainer = document.getElementById('pagination');
+        const currentPage = getCurrentPage();
+        const startPage = Math.max(0, currentPage - 2); // Display up to 5 pages
+        const endPage = Math.min(totalPages - 1, startPage + 4);
+        for (let i = startPage; i <= endPage; i++) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = pageLinks[i];
+            a.textContent = `${i + 1}`;
+            if (i === currentPage) {
+                li.classList.add('active');
+            }
+            a.addEventListener('click', function() {
+                handlePageClick(i);
+            });
+            li.appendChild(a);
+            paginationContainer.appendChild(li);
+        }
+    }
+    // Initially show posts for the current page
+    showPostsForPage(getCurrentPage());
+
+    function handlePageClick(pageIndex) {
+        const paginationLinks = document.querySelectorAll('.pagination li');
+        paginationLinks.forEach(link => link.classList.remove('active'));
+        paginationLinks[pageIndex].classList.add('active');
+        showPostsForPage(pageIndex);
+    }
+
+    function getCurrentPage() {
+        const path = window.location.pathname;
+        const currentPageIndex = pageLinks.findIndex(link => link === path);
+        return currentPageIndex !== -1 ? currentPageIndex : 0;
+    }
+});
+
+</script>
+
+<!-- Search -->
+<script>
+  function searchPosts() {
+    var input, filter;
+    input = document.getElementById('searchInput');
+    filter = input.value.trim();
+    
+    // Get all post titles and image sources
+    var posts = document.querySelectorAll('.test2');
+    var titles = [];
+    var imageSrcs = [];
+    var aHerfs = [];
+    console.log(posts);
+    posts.forEach(function(post) {
+      var paragraphText = post.querySelector('p').innerText.toLowerCase();
+      var title = paragraphText.trim();
+
+      var linkText = post.querySelector('a').innerText.toLowerCase();
+      var aherf = post.querySelector('a').getAttribute('href');
+
+      var imgAlt = post.querySelector('img').alt.toLowerCase();
+      var imgSrc = post.querySelector('img').getAttribute('src');
+      
+      titles.push(title);
+      aHerfs.push(aherf);
+      imageSrcs.push(imgSrc);
+      
+    });
+    
+    // Redirect to the search results page with the search query, titles, and image sources as parameters
+    window.location.href = '/result?q=' + encodeURIComponent(filter)
+      + '&titles=' + encodeURIComponent(JSON.stringify(titles)) 
+      + '&aHerfs=' + encodeURIComponent(JSON.stringify(aHerfs))
+      + '&imageSrcs=' + encodeURIComponent(JSON.stringify(imageSrcs));
+  }
+</script>
+        
+
+      </div> 
+      </div> 
+      <footer>
+        <p>&copy; 2024 WorkHard. All rights reserved.</p>
+      </footer>
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+
+       
+
+</body>
+</html>

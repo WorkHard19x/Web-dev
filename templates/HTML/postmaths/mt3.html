@@ -1,0 +1,330 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/py.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+        <header class="header">
+          <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+          <a href="/index" class="title-color" >
+            <span class="W">W</span>
+            <span class="O">O</span>
+            <span class="R">R</span>
+            <span class="K">K</span>
+            <span class="H">H</span>
+            <span class="A">A</span>
+            <span class="Rr">R</span>
+            <span class="D">D</span>
+            
+        </a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+          <ul class="menu">
+              <li class="search">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                 <button onclick="searchPosts()" class="search-button">Search</button>
+              </li>
+              <li><a href="/index">Home</a></li>
+              <li class="dropdown">
+                  <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                  <div id="aboutDropdown" class="dropdown-content">
+                  <div class="dropdown-content">
+                      <a href="/math">Mathematics</a>
+                      <a href="/physics">Physics</a>
+                      <a href="/code">Code</a>
+                  </div>
+              </li>
+              <li><a href="/about"  id="about-link">About</a></li>
+              <li><a href="/contract" id="contract-link">Contact</a></li>
+              <li class="user-dropdown-container">
+                {% if user_name %}
+                <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                <div id="userDropdown" class="user-dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/security">Security</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                {% else %}
+                <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                {% endif %}
+            </li>
+          </ul>
+          
+      </header>
+      
+
+      
+       
+      </style>
+        <div class="news">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>'I had such fun!', says winner of top math prize
+
+                </h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>
+                  Michel Talagrand, the recently awarded Abel Prize laureate, found solace and purpose in mathematics, particularly amid childhood struggles with eye problems. His journey from Lyon, France to mathematical prominence was marked by a deep immersion in the subject, driven by necessity and passion rather than initial academic prowess. Overcoming personal challenges, he delved into functional analysis and probability theory, ultimately contributing significantly to the understanding of random phenomena. Talagrand's groundbreaking work, highlighted by his theory on Gaussian processes, has had profound implications, shaping fields such as weather forecasting and linguistic modeling. Despite acknowledging the daunting nature of mathematics, Talagrand encourages perseverance and celebrates the inherent joy and freedom found in its pursuit.
+                </p>
+                <img src="/static/assit/math/I had such fun! says winner of top math prize.jpg" width="1200" height="500" alt="">
+                <p class="center">"All my life I worked to the point of exhaustion -- but I had such fun!" says French mathematician Michel Talagrand, new winner of the Abel Prize.</p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> "For Michel Talagrand, who won the Abel mathematics prize on Wednesday, math provided a fun life free from all constraints—and an escape from the eye problems he suffered as a child.</br></br>
+
+                        "Math, the more you do it, the easier it gets," the 72-year-old said in an interview with AFP.</br></br>
+                        
+                        He is the fifth French Abel winner since the award was created by Norway's government in 2003 to compensate for the lack of a Nobel prize in mathematics.</br></br>
+                        
+                        Talagrand's career in functional analysis and probability theory saw him tame some of the incredibly complicated limits of random behavior.</br></br>
+                        
+                        But the mathematician said he had just been "studying very simple things by understanding them absolutely thoroughly."</br></br>
+                        
+                        Talagrand said he was stunned when told by the Norwegian Academy of Science and Letters that he had won the Abel prize.</br></br>
+                        
+                        "I did not react—I literally didn't think for at least five seconds," he said, adding that he was very happy for his wife and two children.</br></br>
+                        
+                        Fear of going blind</br></br>
+                        
+                        When he was young, Talagrand only turned to math "out of necessity," he said.</br></br>
+                        
+                        By the age of 15, he had endured multiple retinal detachments and "lived in terror of going blind".</br></br>
+                        
+                        Unable to run around with friends in Lyon, Talagrand immersed himself in his studies.</br></br>
+                        
+                        His father had a math degree and so he followed the same path. He said he was a "mediocre" student in other areas.</br></br>
+                        
+                        Talagrand was particularly poor at spelling, and still lashes out at what he calls its "arbitrary rules".</br></br>
+                        
+                        Especially in comparison to math, which has "an order in which you do well if you are sensitive to it," he said.</br></br>
+                        
+                        In 1974, Talagrand was recruited by the French National Centre for Scientific Research (CNRS), before getting a Ph.D. at Paris VI University.</br></br>
+                        
+                        He spent a decade studying functional analysis before finding his "thing": probability.</br></br>
+                        
+                        It was then that Talagrand developed his influential theory about "Gaussian processes," which made it possible to study some random phenomena.</br></br>
+                        
+                        Australian mathematician Matt Parker said that Talagrand had helped tame these "complicated random processes".</br></br>
+                        
+                        Physicists had previously developed theories on the limits of how randomness behaves, but Talagrand was able to use mathematics to prove these limits, Parker said on the Abel Prize website.</br></br>
+                        
+                        'Monstrously complicated'</br></br>
+                        
+                        "In a sense, things are as simple as could be—whereas mathematical objects can be monstrously complicated," Talagrand said.</br></br>
+                        
+                        His work deepening the understanding of random phenomena "has become essential in today's world," the CNRS said, citing algorithms which are "the basis of our weather forecasts and our major linguistic models".</br></br>
+                        
+                        Rather than creating a "brutal transformation", Talagrand considers his discoveries as a collective work he compared to "the construction of a cathedral in which everyone lays a stone".</br></br>
+                        
+                        He noted that French mathematics had been doing well an elite level, notching up both Abel prizes and Fields medals—the other equivalent to a math Nobel, which is only awarded to mathematicians under 40.</br></br>
+                        
+                        "But the situation is far less brilliant in schools," where young people are increasingly less attracted to the discipline, he lamented.</br></br>
+                        
+                        The new Abel winner admitted that math can be daunting at first, but re-emphasized his belief that it gets easier the more you do it.</br></br>
+                        
+                        He advised aspiring mathematicians not to worry about failure.</br></br>
+                        
+                        "You can fail to solve a problem 10 times—but that doesn't matter if you succeed on the 11th try," he said.</br></br>
+                        
+                        It can also be hard work.</br></br>
+                        
+                        "All my life I worked to the point of exhaustion—but I had such fun!" he said.</br></br>
+                        
+                        "With math, you have all the resources within yourself. You work without any constraints, free from concerns about money or bosses," he added.</br></br>
+                        
+                        "It's marvelous."</br></br>
+                        
+                        Talagrand will receive his prize, including a 7.5-million-kroner ($705,000) check, in Oslo on May 21."
+
+
+
+
+                          
+
+
+                          
+
+
+
+
+
+
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://phys.org/news/2024-03-fun-winner-math-prize.html" target="_blank"> Read the original article.</a>
+                           
+                          </span>
+                          </br></br></br></br>
+                        </p>  
+                        
+                    
+                                     
+                    </div>
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

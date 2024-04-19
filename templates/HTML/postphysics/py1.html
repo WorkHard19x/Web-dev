@@ -1,0 +1,267 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/py.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+                <header class="header">
+            <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+            <a href="/index" class="title-color" >
+              <span class="W">W</span>
+              <span class="O">O</span>
+              <span class="R">R</span>
+              <span class="K">K</span>
+              <span class="H">H</span>
+              <span class="A">A</span>
+              <span class="Rr">R</span>
+              <span class="D">D</span>
+              
+          </a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+            <ul class="menu">
+                <li class="search">
+                  <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                   <button onclick="searchPosts()" class="search-button">Search</button>
+                </li>
+                <li><a href="/index">Home</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                    <div id="aboutDropdown" class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="/math">Mathematics</a>
+                        <a href="/physics">Physics</a>
+                        <a href="/code">Code</a>
+                    </div>
+                </li>
+                <li><a href="/about"  id="about-link">About</a></li>
+                <li><a href="/contract" id="contract-link">Contact</a></li>
+                <li class="user-dropdown-container">
+                  {% if user_name %}
+                  <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                  <div id="userDropdown" class="user-dropdown-content">
+                      <a href="/profile">Profile</a>
+                      <a href="/security">Security</a>
+                      <a href="{{ url_for('logout') }}">Logout</a>
+                  </div>
+                  {% else %}
+                  <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                  {% endif %}
+              </li>
+            </ul>
+            
+        </header>
+      
+
+      
+       
+      </style>
+        <div class="news">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>'Surprising' hidden activity of semiconductor material spotted by researchers</h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>New research suggests that materials commonly overlooked in computer chip design actually play an important role in information processing, a discovery which could lead to faster and more efficient electronics. Using advanced imaging techniques, an international team found that the material that a semiconductor chip device is built on, called the substrate, responds to changes in electricity much like the semiconductor on top of it.</p>
+                <img src="/static/assit/physic/Surprising hidden activity of semiconductor material spotted by researchers.jpg" width="1200" height="500" alt="">
+                <p class="center">Venkatraman Gopalan, professor of materials science and engineering and of physics, in his optical lab.</p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> 
+                            New research suggests that materials commonly overlooked in computer chip design actually play an important role in information processing, a discovery which could lead to faster and more efficient electronics. Using advanced imaging techniques, an international team led by Penn State researchers found that the material that a semiconductor chip device is built on, called the substrate, responds to changes in electricity much like the semiconductor on top of it.
+                            </br></br>The researchers worked with the semiconductor material, vanadium dioxide, which they said shows great potential as an electronic switch. They also studied how vanadium dioxide interacts with the substrate material titanium dioxide and said they were surprised to discover that there seems to be an active layer in the substrate that behaves similarly to the semiconductor material on top of it when the semiconductor switches between an insulator -- not letting electricity flow -- and a metal -- letting electricity flow. The revelation that substrates can play an active role in semiconductor processes is significant for designing future materials and devices, said study lead Venkatraman Gopalan, professor of materials science and engineering and of physics at Penn State.
+                            </br></br>"New ideas are needed for smaller and faster electronics in order to keep up with Moore's law," said Gopalan, the corresponding author of the study in Advanced Materials. "One idea being pursued is materials, such as vanadium dioxide, that can switch between metal -- the one state -- and insulator -- the zero state -- states in a trillionth of a second. This is known as undergoing metal-insulator transitions."
+                            </br></br>The potential of vanadium dioxide as a metal-to-insulator transistor is well-documented and the material is considered promising for semiconductor technology due to its low energy consumption, Gopalan said. However, the material's properties are still not fully understood, and until now, it has usually been observed in isolation rather than while functioning in a real device.
+                            </br></br>Vanadium dioxide has strongly correlated electronic effects, meaning the repulsion between electrons interferes with the device, so cannot be ignored as is currently done in silicon-based electronics. This characteristic can result in materials with novel functionalities such as high-temperature superconductivity and enhanced magnetic properties.
+                            </br></br>"The underlying physics of this material is less understood, and its performance in a device geometry is even lesser understood," Gopalan said. "If we can make them work, there will be a renaissance in electronics. In particular, neuromorphic computing -- where computer systems that take inspiration from the brains of living systems with neurons -- could seriously benefit by using such devices."
+                            The team investigated vanadium dioxide in a device rather than in isolation, applying a voltage to it to make it switch from an insulating to a conducting state. They used the Advanced Photon Source (APS) at Argonne National Laboratory, which uses powerful X-ray beams to study the behavior and structure of materials on the atomic level. When mapping the spatial and temporal response of the material to the switching event, the researchers observed unexpected changes to the structure of the material and substrate.
+                            </br></br>"What we found was that as the vanadium dioxide film changes to a metal, the whole film channel bulges, which is very surprising," Gopalan said. "Normally it is supposed to shrink. So clearly something else was going on in the film geometry that was missed before."
+                            The APS X-ray penetrated through the vanadium dioxide film and into the titanium dioxide (TiO2) substrate -- which is normally considered an electrically and mechanically passive material -- that the thin film was grown on.
+                            </br></br>"We found to our great surprise that this substrate is very much active, jiving and responding in completely surprising ways as the film switches from an insulator to a metal and back, when the electrical pulses arrive," Gopalan said. "This is like watching the tail wagging the dog, which stumped us for a long while. This surprising and previously overlooked observation completely changes how we need to view this technology."
+                            </br></br>To understand these findings, the theory and simulation effort -- led by Long-Qing Chen, Hamer Professor of Materials Science and Engineering, professor of engineering science and mechanics and of mathematics at Penn State -- developed a theoretical framework to explain the entire process of the film and the substrate bulging instead of shrinking. When their model incorporated naturally occurring missing oxygen atoms in this material of two types, charged and uncharged, the experimental results could be satisfactorily explained.
+                            </br></br>"These neutral oxygen vacancies hold a charge of two electrons, which they can release when the material switches from an insulator to a metal," Gopalan said. "The oxygen vacancy left behind is now charged and swells up, leading to the observed surprising swelling in the device. This can also happen in the substrate. All of these physical processes are beautifully captured in the phase-field theory and modelling performed in this work for the first time by the postdoc Yin Shi in Professor Chen's group."
+                            </br></br>Gopalan credited the multidisciplinary team's combined expertise in material growth, synthesis, structure analysis and synchrotron beamline operation with the new understanding. Using a collaborative approach led by Greg Stone, a physical scientist with the U.S. Army and the lead experimental author, and Yin Chi, postdoctoral scholar at Penn State and the lead theory author, the researchers disentangled the material's responses and observed them individually using phase field simulations, a simulation that helps scientists understand material changes over time by depicting various states of matter in a virtual setting.
+                            </br></br>"By bringing these experts together and pooling our understanding of the problem, we were able to go far beyond our individual scope of expertise and discover something new," said Roman Engel-Herbert, director of the Paul Drude Institute of Solid State Electronics in Berlin, Germany, and co-author of the study whose group grew these films along with Darrell Schlom's group at Cornell University. "Recognizing the potential of functional materials necessitates an appreciation of their broader context, just as complex scientific challenges can only be solved through widening our individual perspectives."
+                            </br></br>The collaboration enabled both a significant amount of progress to happen in a short period of time and work to be done in a shorter period of time, and brought in a variety of perspectives from multiple disciplines.
+                            </br></br>The responses themselves require further investigation, researchers said, but they believe that understanding them will assist in identifying previously unknown capabilities of vanadium dioxide, including potential yet-to-be discovered phenomena in the TiO2 substrate that was considered passive before this study. The study itself unfolded over 10 years, Gopalan noted, including validating the results.
+                            </br></br>"This is what it takes to go from interesting science to a working device you can hold in the palm of your hand," Gopalan said. "Experiments and theory are complex and require large-scale collaborative teams working closely together over an extended period of time to solve difficult problems that could have a large impact. We hope and expect that this will accelerate the progress towards a new generation of electronic devices."
+                            </br></br>Prior to his current position, Stone completed a postdoctoral fellowship at Penn State. Along with Gopalan, Engel-Herbert, Chen, Schlom, Stone and Chi, other authors of the paper include Matthew Jerry, graduate student, and Vladimir Stoica, research associate professor, both from Penn State; Hanjong Paik from Cornell University; Zhonghou Cai and Haidan Wen from Argonne National Laboratory, and Suman Datta from the Georgia Institute of Technology. The Department of Energy primarily supported this work. The U.S. National Science Foundation supported the film growth for this study.
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://www.psu.edu/news/materials-research-institute/story/surprising-hidden-activity-semiconductor-material-spotted/" target="_blank">Materials</a>
+                            provided by Penn State. Original written by Jamie Oberdick. Note: Content may be edited for style and length.
+                          </span>
+                          </br></br></br></br>
+                        </p>  
+                        
+                    
+                                     
+                    </div>
+                    
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

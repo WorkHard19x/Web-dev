@@ -1,0 +1,296 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/py.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+                <header class="header">
+            <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+            <a href="/index" class="title-color" >
+              <span class="W">W</span>
+              <span class="O">O</span>
+              <span class="R">R</span>
+              <span class="K">K</span>
+              <span class="H">H</span>
+              <span class="A">A</span>
+              <span class="Rr">R</span>
+              <span class="D">D</span>
+              
+          </a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+            <ul class="menu">
+                <li class="search">
+                  <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                   <button onclick="searchPosts()" class="search-button">Search</button>
+                </li>
+                <li><a href="/index">Home</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                    <div id="aboutDropdown" class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="/math">Mathematics</a>
+                        <a href="/physics">Physics</a>
+                        <a href="/code">Code</a>
+                    </div>
+                </li>
+                <li><a href="/about"  id="about-link">About</a></li>
+                <li><a href="/contract" id="contract-link">Contact</a></li>
+                <li class="user-dropdown-container">
+                  {% if user_name %}
+                  <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                  <div id="userDropdown" class="user-dropdown-content">
+                      <a href="/profile">Profile</a>
+                      <a href="/security">Security</a>
+                      <a href="{{ url_for('logout') }}">Logout</a>
+                  </div>
+                  {% else %}
+                  <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                  {% endif %}
+              </li>
+            </ul>
+            
+        </header>
+      
+
+      
+       
+      </style>
+        <div class="news">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>Internet can achieve quantum speed with light saved as sound
+                </h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>Researchers at the University of Copenhagen's Niels Bohr Institute have developed a groundbreaking method for quantum memory using a small drum to store and forward quantum data encoded in sonic vibrations. The quantum drum, visible to the naked eye, leverages quantum mechanics in its rapid vibrations induced by laser light. This innovation, detailed in Physical Review Letters, offers a promising solution for quantum internet by converting light signals into mechanical vibrations, allowing for noise-resistant transmission over long distances without data loss or decoherence. Led by postdoc Mads Bjerregaard Kristensen, the team aims to create a network of quantum computers interconnected by quantum drums, ensuring ultra-fast and ultra-secure communication. Unlike other methods, the quantum drum offers flexibility and practicality, potentially serving as quantum RAM and revolutionizing quantum computing and communication.</p>
+                <img src="/static/assit/physic/Internet can achieve quantum speed with light saved as sound.jpg" width="1200" height="500" alt="">
+                <p class="center">Researchers are able to translate information in light to vibrations of the membrane inside a quantum drum and back. Credit: Julian Robinson-Tait.</p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> 
+                        </br></br>Researchers at the University of Copenhagen's Niels Bohr Institute have developed a new way to create quantum memory: A small drum can store data sent with light in its sonic vibrations, and then forward the data with new light sources when needed again. The results demonstrate that mechanical memory for quantum data could be the strategy that paves the way for an ultra-secure internet with incredible speeds.
+
+                      </br></br>Just beneath Niels Bohr's old office is a basement where scattered tables are covered with small mirrors, lasers and an agglomeration of all types of devices connected by webs of wires and heaps of tape. It looks like a child's project gone too far, one that their parents have tried in vain to get them to clean up.
+                      
+                      </br></br>While it is difficult for the untrained eye to discern that these tables are actually the home to an array of world-leading research projects, the important stuff is happening within worlds so small that not even Newton's laws apply. This is where Niels Bohr's quantum physical heirs are developing the most cutting-edge of quantum technologies.
+                      
+                      </br></br>One of these projects stands out—for physicists at least—by the fact that a gizmo visible to the naked eye is able to achieve quantum states. The quantum drum is a small membrane made of a ceramic, glass-like material with holes scattered in a neat pattern along its edges.
+                      
+                      </br></br>When the drum is beaten with the light of a laser, it begins vibrating, and does this so quickly and without interference that quantum mechanics come into play. This property has long since caused a stir by opening up a number of quantum technological possibilities.
+                      
+                      </br></br>Now, a collaboration across various quantum areas at the Institute has demonstrated that the drum can also play a key role for the future's network of quantum computers. Like modern alchemists, researchers have created a new form of "quantum memory" by converting light signals into sonic vibrations.
+                      
+                      </br></br>In their just-published research article, the researchers have proven that quantum data from a quantum computer emitted as light signals—e.g., through the type of fiber-optic cable already used for high-speed internet connections—can be stored as vibrations in the drum and then forwarded.
+                      
+                      </br></br>Previous experiments had demonstrated to researchers that the membrane can remain in an otherwise fragile quantum state. On this basis, they believe that the drum should be able to receive and transmit quantum data without it "decohering," i.e., losing its quantum state when the quantum computers are ready.
+                      
+                      </br></br>"This opens up great perspectives for the day when quantum computers can really do what we expect them to. Quantum memory is likely to be fundamental for sending quantum information over distances. So, what we've developed is a crucial piece in the very foundation for an internet of the future with quantum speed and quantum security," says postdoc Mads Bjerregaard Kristensen of the Niels Bohr Institute, lead author of the new research article.
+                      
+                      </br></br> <span style="font-weight: bold;">Ultra-fast, ultra-secure</span>
+                      When transferring information between two quantum computers over a distance—or among many in a quantum internet—the signal will quickly be drowned out by noise. The amount of noise in a fiber-optic cable increases exponentially the longer the cable is. Eventually, data can no longer be decoded.
+                      
+                      </br></br>The classical Internet and other major computer networks solve this noise problem by amplifying signals in small stations along transmission routes. But for quantum computers to apply an analogous method, they must first translate the data into ordinary binary number systems, such as those used by an ordinary computer.
+                      
+                      </br></br>This won't do. Doing so would slow the network and make it vulnerable to cyberattacks, as the odds of classical data protection being effective in a quantum computer future are very bad.
+                      
+                      </br></br>"Instead, we hope that the quantum drum will be able to assume this task. It has shown great promise as it is incredibly well-suited for receiving and resending signals from a quantum computer. So, the goal is to extend the connection between quantum computers through stations where quantum drums receive and retransmit signals, and in so doing, avoid noise while keeping data in a quantum state," says Kristensen.
+                      
+                      </br></br>"In doing so, the speeds and advantages of quantum computers, e.g., in relation to certain complex calculations, will extend across networks and the Internet, as they will be achieved by exploiting properties like superposition and entanglement that are unique to quantum states."
+                      
+                      </br></br>Mads Bjerregaard Kristensen is the main force behind the new research. Credit: University of Copenhagen
+                      
+                      </br></br>If successful, the stations will also be able to extend quantum-secured connections, whose quantum codes could also be lengthened by the drum. These secure signals could be sent over various distances—whether around a quantum network or across the Atlantic—in the quantum internet of the future.
+                      
+                      </br></br> <span style="font-weight: bold;">Flexible, practical and possibly groundbreaking as quantum RAM</span>
+                      Research is being conducted elsewhere to an alternative where a data-carrying light source is directed at an atomic system and temporarily shifts the electrons in the atom, but the method has its limitations.
+                      
+                      </br></br>"There are limits to what you can do with an atomic system, as we can't design atoms or the frequency of the light that they can interact with ourselves. Our relatively 'large' mechanical system provides more flexibility. We can tinker and adjust, so that if new discoveries change the rules of the game, there is a good chance that the quantum drum can be adapted," explains Professor Albert Schliesser, co-author of the research article.
+                      
+                      </br></br>"For better or worse, our abilities as researchers are mostly what define the limits for how well it all works," he points out.
+                      
+                      </br></br>The drum is the latest and most serious take on mechanical quantum memory as it combines a number of properties: The drum has low signal loss—i.e., the data signal's strength is well retained. It also has the tremendous advantage of being able to handle all light frequencies, including the frequency used in the fiber optic light cables upon which the modern Internet is built.
+                      
+                      </br></br>The quantum drum is also convenient because data can be stored and read whenever needed. And the record-long 23 milliseconds of memory time already achieved by researchers makes it far more likely that the technology may one day become a building block for systems of quantum networks as well as the hardware in quantum computers.
+                      
+                      </br></br>"We are out early with this research. Quantum computing and communication are still at an early stage of development, but with the memory we've obtained, one can speculate that the quantum drum will one day be used as a kind of quantum RAM, a kind of temporary working memory for quantum information. And that would be groundbreaking," says the professor.
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://www.psu.edu/news/materials-research-institute/story/surprising-hidden-activity-semiconductor-material-spotted/" target="_blank">Provided by University of Copenhagen 
+
+                            </a>
+                          </span>
+                          </br></br></br></br>
+                        </p>  
+                        
+                    
+                                     
+                    </div>
+                    
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

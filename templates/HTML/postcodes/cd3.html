@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/py.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+        <header class="header">
+          <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+          <a href="/index" class="title-color" >
+            <span class="W">W</span>
+            <span class="O">O</span>
+            <span class="R">R</span>
+            <span class="K">K</span>
+            <span class="H">H</span>
+            <span class="A">A</span>
+            <span class="Rr">R</span>
+            <span class="D">D</span>
+            
+        </a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+          <ul class="menu">
+              <li class="search">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                 <button onclick="searchPosts()" class="search-button">Search</button>
+              </li>
+              <li><a href="/index">Home</a></li>
+              <li class="dropdown">
+                  <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                  <div id="aboutDropdown" class="dropdown-content">
+                  <div class="dropdown-content">
+                      <a href="/math">Mathematics</a>
+                      <a href="/physics">Physics</a>
+                      <a href="/code">Code</a>
+                  </div>
+              </li>
+              <li><a href="/about"  id="about-link">About</a></li>
+              <li><a href="/contract" id="contract-link">Contact</a></li>
+              <li class="user-dropdown-container">
+                {% if user_name %}
+                <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                <div id="userDropdown" class="user-dropdown-content">
+                    <a href="/profile">Profile</a>
+                  <a href="/security">Security</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                {% else %}
+                <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                {% endif %}
+            </li>          </ul>
+      </header>
+      
+
+      
+       
+      </style>
+        <div class="news" id="post3">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>How I Became a Python Programmer—and Fell Out of Love With the Machine
+                </h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>
+                  In this narrative, the author reflects on their journey through programming, starting with high-level abstractions like HTML and Flash, and eventually delving into Python through the discovery of Django. Despite initially seeking to "go deeper in the stack," they found Python's versatility allowed them to navigate between high and low levels of abstraction effortlessly, ultimately leading to a thriving business building Django-based websites. Through Python and Django, the author transcended the abstraction of the programming stack, focusing instead on the endless possibilities offered by their chosen language and community.                
+                </p>
+                <img src="/static/assit/code/How I Became a Python Programmer—and Fell Out of Love With the Machine.jpg" width="1200" height="500" alt="">
+                <p class="center"></p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> 
+                        </br></br>The German historian Oswald Spengler considered our age the age of abstraction, a concept strikingly evident in programming. Programmers often refer to their tools as a "stack," with simple markup languages like HTML at the top and the "bare metal" languages of the machine at the bottom. This hierarchy reflects the decreasing level of abstraction and increasing difficulty as you move down the stack.
+
+                      </br></br>While the lowest level may seem distant from reality, it's where electrical impulses in silicon dioxide conduct patterns that produce the screens we interact with daily. Yet, despite the abstraction, programmers manipulate these patterns effortlessly, illustrating Spengler's insight into our relationship with abstraction.
+                      
+                      </br></br>However, the danger lies in mistaking abstractions for reality. Many programmers find themselves drawn deeper into the stack over time, seeking a more genuine connection to the underlying mechanisms. This journey often begins at the top of the stack, with languages like HTML, before progressing to more intricate systems.
+                      
+                      </br></br>Personal experiences often shape this journey. Starting with HTML in the mid-90s, the allure of animation led some programmers to platforms like Flash. Initially, Flash was more about design and animation than programming, but the addition of scripting languages provided a glimpse into the world of coding.
+                      
+                      </br></br>For some, like the author, the desire for greater control and simplicity drove them to explore lower-level languages. In 2004, a suggestion from a dishwasher led the author to Python, promising a deeper understanding of the stack. Learning a new language was daunting, but the absence of modern learning resources meant relying on books and personal motivation to progress.
+                      
+                      </br></br>Ultimately, the journey into programming requires a driving passion, a project that captivates the individual and motivates them to overcome the challenges of learning a new language.
+                      
+                      </br></br>Running a restaurant kitchen left little time for anything else, eventually leading to burnout. Seeking respite, the author embarked on a journey to Asia, reminiscent of the Beatles' retreat, hoping to find solace. Amidst this adventure, a simple search for Django Reinhardt's music introduced him to something unexpected: Django, a web framework for Python.
+
+                      </br></br>Intrigued by the framework's promise of perfectionism without deadlines, the author's interest was piqued. Recall of a previous suggestion to learn Python resonated, and upon returning to Los Angeles, an opportunity to build a website for a charity emerged. With Django as the chosen platform, the author embarked on a journey into web development.
+
+                      </br></br>What began as a single project for Wheels4Life blossomed into a thriving business of building Django-based websites. Despite Python residing midway in the programming stack, its versatility allowed the author to navigate effortlessly between high-level abstractions and lower-level implementations. Python's flexibility and expansive capabilities enabled the author to realize his creative visions without the need to delve deeper into the stack.
+
+                      </br></br>Attending the inaugural Django conference provided insight into a vibrant community of like-minded individuals, united by their passion for problem-solving and innovation. Through Python and Django, the author found a tangible connection to technology, transcending the abstract complexities of the programming stack.
+
+                      </br></br>Reflecting on this journey, the author realizes that the quest to strip away abstractions and reach the bare metal may be outdated. Instead, the essence of programming lies in one's chosen language, community, and the limitless possibilities they offer. In Python and Django, the author discovered a realm where creativity flourishes, unencumbered by the constraints of 
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://www.wired.com/story/how-i-became-a-python-programmer-and-distanced-myself-from-the-machine/" target="_blank">Provided</a>
+                            
+                          </span>
+                          </br></br></br></br>
+                        </p>               
+                    </div>
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

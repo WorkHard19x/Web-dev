@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/CSS/result.css">
+
+<title>Search Results</title>
+<style>
+  .search-results-container {
+    width: 70%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 20px ;
+    top:66px;
+    border: 1px solid rgb(0, 0, 0);
+    position: relative;
+    justify-content: center; 
+    background-color: rgb(7, 7, 7);
+
+
+    
+   
+  }
+  .search-result {
+    width: calc(33.33% - 10px);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 10px 15px; 
+    flex-wrap: wrap;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color:  rgb(107, 105, 105);
+    justify-content: space-between;
+    display: inline-block;
+  }
+  .search-result img {
+    width: 100%; /* Ensure image fits within its container */
+    height: 200px;
+  }
+  .search-result a{
+    text-decoration: none; 
+    color:rgb(250, 161, 101); /* Ensure image fits within its container */
+    font-weight:bold;
+  }
+  .result-tittle h1{
+    color: white;
+    justify-content: center; 
+    display: flex;
+    position: relative;
+  }
+  @media screen and (max-width: 1000px) {
+            .search-result {
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+            margin-top: 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            padding: 1px 1px; 
+            flex-wrap: wrap;
+            display: inline-block;
+            box-sizing: border-box;
+            background-color:  rgb(107, 105, 105);
+            justify-content: space-between;
+            display: inline-block;
+          }
+
+          .search-results-container {
+            width: 99.2%;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            justify-content: center; 
+            background-color: rgb(7, 7, 7);
+            padding: 1px 1px; 
+
+          }
+          .search-result img {
+            width: 100%; /* Ensure image fits within its container */
+            height: 170px;
+          }
+          .search-result a{
+            font-size: 13px;
+            font-weight:bold;
+          }
+  }
+  @media screen and (max-width:350px) {
+          .search-results-container {
+            width: 91.5%;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            justify-content: center; 
+            background-color: rgb(7, 7, 7);
+  }
+          
+        }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+    <a href="/index" class="title-color" >
+      <span class="W">W</span>
+      <span class="O">O</span>
+      <span class="R">R</span>
+      <span class="K">K</span>
+      <span class="H">H</span>
+      <span class="A">A</span>
+      <span class="Rr">R</span>
+      <span class="D">D</span>
+      
+  </a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+    <ul class="menu">
+        <li class="search">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+           <button onclick="searchPosts()" class="search-button">Search</button>
+        </li>
+        <li><a href="/index">Home</a></li>
+        <li class="dropdown">
+            <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+            <div id="aboutDropdown" class="dropdown-content">
+            <div class="dropdown-content">
+                <a href="/math">Mathematics</a>
+                <a href="/physics">Physics</a>
+                <a href="/code">Code</a>
+            </div>
+        </li>
+        <li><a href="/about"  id="about-link">About</a></li>
+        <li><a href="/contract" id="contract-link">Contact</a></li>
+        <li class="user-dropdown-container">
+          {% if user_name %}
+          <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+          <div id="userDropdown" class="user-dropdown-content">
+              <a href="/profile">Profile</a>
+              <a href="/security">Security</a>
+              <a href="{{ url_for('logout') }}">Logout</a>
+          </div>
+          {% else %}
+          <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+          {% endif %}
+      </li>
+    </ul>
+    
+</header>
+
+
+
+
+
+
+
+
+<div class="search-results-container">
+  <div class="result-tittle">
+    <h1>Search...</h1>
+  </div>
+  <div id="searchResults">
+    <!-- Search results will appear here -->
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var searchQuery = urlParams.get('q');
+      var titles = JSON.parse(urlParams.get('titles'));
+      var imageSrcs = JSON.parse(urlParams.get('imageSrcs'));
+      var aHerfs = JSON.parse(urlParams.get('aHerfs'));
+
+      if (searchQuery) {
+        searchPosts(searchQuery, titles, imageSrcs,aHerfs);
+      } else {
+        // Display a message if no search query is provided
+        displayNoQueryMessage();
+      }
+    });
+    
+    function searchPosts(query, titles, imageSrcs,aHerfs) {
+      var filter = query.toUpperCase();
+      var matchingTitles = [];
+      var matchingImageSrcs = [];
+      var matchingaHerfs = [];
+
+      // Loop through all post titles and find matching ones
+      for (var i = 0; i < titles.length; i++) {
+        if (titles[i].toUpperCase().includes(filter)) {
+          matchingTitles.push(titles[i]);
+          matchingImageSrcs.push(imageSrcs[i]);
+          matchingaHerfs.push(aHerfs[i]);
+        }
+      }
+    
+      // Display the search results
+      displaySearchResults(matchingTitles, matchingImageSrcs,matchingaHerfs);
+    }
+    
+    function displaySearchResults(titles, imageSrcs, aHerfs) {
+        var searchResultsDiv = document.getElementById('searchResults');
+        searchResultsDiv.innerHTML = '';
+
+        if (titles.length === 0) {
+          searchResultsDiv.innerHTML = '<p style="color: white; text-align: center;  font-weight: bold; font-size: 25px;  ">No results found.</p>';
+          var h1Element = document.querySelector('.result-tittle h1');
+            if (h1Element) {
+                h1Element.style.display = 'none';
+            }
+        } else {
+            for (var i = 0; i < titles.length; i++) {
+            var div = document.createElement('div');
+            div.classList.add('search-result');
+
+            // Create an <a> tag to wrap the image and title
+            var a = document.createElement('a');
+            a.href = aHerfs[i]; // Set the href attribute to the link
+            div.appendChild(a); // Append the <a> tag to the search result div
+
+            // Create and append the image
+            var img = document.createElement('img');
+            img.src = imageSrcs[i];
+            a.appendChild(img); // Append the image to the <a> tag
+
+            // Create and append the title
+            var p = document.createElement('p');
+            p.textContent = titles[i];
+            a.appendChild(p); // Append the title to the <a> tag
+
+            searchResultsDiv.appendChild(div);
+            }
+        }
+    }
+        
+    function displayNoQueryMessage() {
+      var searchResultsDiv = document.getElementById('searchResults');
+      searchResultsDiv.innerHTML = '<p>No search query provided.</p>';
+    }
+    </script>
+
+
+
+<script src="/static/js/script.js"></script>
+
+  
+
+
+</body>
+</html>

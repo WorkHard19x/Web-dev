@@ -1,0 +1,319 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="/static/CSS/py.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+        <header class="header">
+          <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+          <a href="/index" class="title-color" >
+            <span class="W">W</span>
+            <span class="O">O</span>
+            <span class="R">R</span>
+            <span class="K">K</span>
+            <span class="H">H</span>
+            <span class="A">A</span>
+            <span class="Rr">R</span>
+            <span class="D">D</span>
+            
+        </a>
+          <input class="menu-btn" type="checkbox" id="menu-btn" />
+          <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+          <ul class="menu">
+              <li class="search">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                 <button onclick="searchPosts()" class="search-button">Search</button>
+              </li>
+              <li><a href="/index">Home</a></li>
+              <li class="dropdown">
+                  <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                  <div id="aboutDropdown" class="dropdown-content">
+                  <div class="dropdown-content">
+                      <a href="/math">Mathematics</a>
+                      <a href="/physics">Physics</a>
+                      <a href="/code">Code</a>
+                  </div>
+              </li>
+              <li><a href="/about"  id="about-link">About</a></li>
+              <li><a href="/contract" id="contract-link">Contact</a></li>
+              <li class="user-dropdown-container">
+                {% if user_name %}
+                <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                <div id="userDropdown" class="user-dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/security">Security</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+                {% else %}
+                <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                {% endif %}
+            </li>
+          </ul>
+          
+      </header>
+      
+
+      
+       
+      </style>
+        <div class="news">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>How can Australia solve the math teacher shortage? It can start by training more existing teachers to teach math
+                </h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>
+                  A concerning shortage of qualified mathematics teachers in Australia has led to a significant portion of high school math classes being taught by instructors without proper training in the subject. This issue undermines students' educational attainment and compromises the country's workforce preparedness in mathematics, a critical skill for emerging fields like big data and artificial intelligence. Efforts to address this shortage include training existing teachers in mathematics education, but the current system is fragmented and lacks sufficient support. A new report recommends a national strategy to standardize training programs and incentivize teachers to upskill in mathematics, drawing inspiration from successful initiatives in other countries like Ireland. Urgent action is needed to ensure students receive quality math education and to meet national skill shortages.                </p>
+                <img src="/static/assit/math/How can Australia solve the math teacher shortage.jpg" width="1200" height="500" alt="">
+                <p class="center">Credit: Unsplash/CC0 Public Domain</p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> 
+                          Imagine if you enrolled your child in swimming lessons but instead of a qualified swimming instructor, they were taught freestyle technique by a soccer coach.
+                        </br></br>Something similar is happening in classrooms around Australia every day. As part of the ongoing teacher shortage, there are significant numbers of teachers teaching "out-of-field." This means they are teaching subjects they are not qualified to teach.
+
+                      </br></br>One of the subjects where out-of-field teaching is particularly common is math.
+
+                    </br></br>A 2021 report on Australia's teaching workforce found that 40% of those teaching high school mathematics are out-of-field (English and science were 28% and 29%, respectively).
+
+                  </br></br>Another 2021 study of students in Year 8 found they were more likely to be taught by teachers who had specialist training in both math and math education if they went to a school in an affluent area rather than a disadvantaged one (54% compared with 31%).
+
+                </br></br>Our new report looks at how we can fix this situation by training more existing teachers in math education.
+
+              </br></br>Why is this a problem?
+            </br>Mathematics is one of the key parts of school education. But we are seeing worrying signs students are not receiving the math education they need.
+
+          </br></br>The 2021 study of Year 8 students showed those taught by teachers with a university degree majoring in math had markedly higher results, compared with those taught by out-of-field teachers.
+
+        </br></br>We also know math skills are desperately needed in the broader workforce. The burgeoning worlds of big data and artificial intelligence rely on mathematical and statistical thinking, formulae and algorithms. Math has also been identified as a national skill shortages priority area.
+
+      </br></br>What do we do about this?
+
+    </br>There have been repeated efforts to address teacher shortages, including trying to retain existing mathematics teachers, having specialist teachers teaching across multiple schools and higher salaries. There is also a push to train more teachers from scratch, which of course will take many years to implement.
+
+  </br></br>There is one strategy, however, that has not yet been given much attention by policy makers: upgrading current teachers' math and statistics knowledge and their skills in how to teach these subjects.
+
+</br></br>They already have training and expertise in how to teach and a commitment to the profession. Specific training in math will mean they can move from being out-of-field to "in-field".
+
+</br></br>How to give teachers this training?
+
+</br>A new report commissioned by mathematics and statistics organizations in Australia (including the Australian Mathematical Sciences Institute) looks at what is currently available in Australia to train teachers in math.
+
+</br></br>It identified 12 different courses to give existing teachers math teaching skills. They varied in terms of location, duration (from six months to 18 months full-time) and aims.
+
+</br></br>For example, some were only targeted at teachers who want to teach math in the junior and middle years of high school. Some taught university-level math and others taught school-level math. Some had government funding support; others could cost students more than A$37,000.
+
+</br></br>Overall, we found the current system is confusing for teachers to navigate. There are complex differences between states about what qualifies a teacher to be "in-field" for a subject area.
+
+</br></br>In the current incentive environment, we found these courses cater to a very small number of teachers. For example, in 2024 in New South Wales this year there are only about 50 government-sponsored places available.
+
+</br></br>This is not adequate. Pre-COVID, it was estimated we were losing more than 1,000 equivalent full-time math teachers per year to attrition and retirement and new graduates were at best in the low hundreds.
+
+</br></br>But we don't know exactly how many extra teachers need to be trained in math. One of the key recommendations of the report is for accurate national data of every teacher's content specializations.
+
+</br></br>We need a national approach
+
+</br>The report also recommends a national strategy to train more existing teachers to be math teachers. This would replace the current piecemeal approach.
+
+</br></br>It would involve a standard training regime across Australia with government and school-system incentives for people to take up extra training in math.
+
+</br></br>There is international evidence to show a major upskilling program like this could work.
+
+</br></br>In Ireland, where the same problem was identified, the government funds a scheme run by a group of universities. Since 2012, teachers have been able to get a formal qualification (a professional diploma). Between 2009 and 2018 the percentage of out-of-field math teaching in Ireland dropped from 48% to 25%.
+</br></br>To develop a similar scheme here in Australia, we would need coordination between federal and state governments and universities. Based on the Irish experience, it would also require several million dollars in funding.
+
+</br></br>But with students receiving crucial math lessons every day by teachers who are not trained to teach math, the need is urgent.
+
+</br></br>The report mentioned in this article was commissioned by the Australian Mathematical Sciences Institute, the Australian Mathematical Society, the Statistical Society of Australia, the Mathematics Education Research Group of Australasia and the Actuaries Institute
+
+
+
+
+                          
+
+
+                          
+
+
+
+
+
+
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://phys.org/news/2024-04-australia-math-teacher-shortage-teachers.html" target="_blank">This article is republished. Read the original article.</a>
+                           
+                          </span>
+                          </br></br></br></br>
+                        </p>  
+                        
+                    
+                                     
+                    </div>
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

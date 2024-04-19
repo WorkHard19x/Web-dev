@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/CSS/py.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    </head>
+    <body>
+
+        <!-- header -->
+                <header class="header">
+            <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+            <a href="/index" class="title-color" >
+              <span class="W">W</span>
+              <span class="O">O</span>
+              <span class="R">R</span>
+              <span class="K">K</span>
+              <span class="H">H</span>
+              <span class="A">A</span>
+              <span class="Rr">R</span>
+              <span class="D">D</span>
+              
+          </a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+            <ul class="menu">
+                <li class="search">
+                  <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+                   <button onclick="searchPosts()" class="search-button">Search</button>
+                </li>
+                <li><a href="/index">Home</a></li>
+                <li class="dropdown">
+                    <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                    <div id="aboutDropdown" class="dropdown-content">
+                    <div class="dropdown-content">
+                        <a href="/math">Mathematics</a>
+                        <a href="/physics">Physics</a>
+                        <a href="/code">Code</a>
+                    </div>
+                </li>
+                <li><a href="/about"  id="about-link">About</a></li>
+                <li><a href="/contract" id="contract-link">Contact</a></li>
+                <li class="user-dropdown-container">
+                  {% if user_name %}
+                  <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+                  <div id="userDropdown" class="user-dropdown-content">
+                      <a href="/profile">Profile</a>
+                      <a href="/security">Security</a>
+                      <a href="{{ url_for('logout') }}">Logout</a>
+                  </div>
+                  {% else %}
+                  <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+                  {% endif %}
+              </li>
+            </ul>
+            
+        </header>
+      
+
+      
+       
+      </style>
+        <div class="news">
+            <div class="update">
+              <div class="author-date-time">
+                <p class="author">Leo Doan</p>
+                <p>Physic</p>
+                <p>Apri 4, 2024</p>
+                <p>5:00 pm</p>
+              </div>
+              <div class="title">
+                <h1>Study uses thermodynamics to describe expansion of the universe
+                </h1>
+                <p><span style="font-size: 20px; color:red;">Summary: </span>The concept of the universe's expansion, introduced by Lemaître and confirmed by Hubble in the 1920s, was revolutionized in 1998 with the discovery of its acceleration, leading to the notion of dark energy dominating the universe's energy content. Recent research by Souza and collaborators from UNESP presents a novel approach to understanding this expansion using thermodynamic and solid-state physics concepts. They propose linking the expansion dynamics to the Grüneisen parameter, which reveals a time-dependent behavior in the dark energy-dominated era, challenging fixed-value assumptions of the cosmological constant. This study not only sheds light on the intricate aspects of the universe's expansion but also offers a fresh perspective rooted in thermodynamics and condensed matter physics, potentially driving significant advancements in cosmology.</p>
+                <img src="/static/assit/physic/study-uses-thermodynam.jpg" width="1200" height="500" alt="">
+                <p class="center">Credit: Results in Physics (2024). DOI: 10.1016/j.rinp.2024.107344</p>
+                </div>
+                <div class="main-page">
+                    <div class="content" >
+                        <p> 
+                            The idea that the universe is expanding dates from almost a century ago. </br></br>It was first put forward by Belgian cosmologist Georges Lemaître (1894–1966) in 1927 and confirmed observationally by American astronomer Edwin Hubble (1889-1953) two years later. </br></br>Hubble observed that the redshift in the electromagnetic spectrum of the light received from celestial objects was directly proportional to their distance from Earth, which meant that bodies farther away from Earth were moving away faster and the universe must be expanding. </br></br>A surprising new ingredient was added to the model in 1998 when observations of very distant supernovae by the Supernova Cosmology Project and the High-Z Supernova Search Team showed that the universe is accelerating as it expands, rather than being slowed down by gravitational forces, as had been supposed. </br></br>This discovery led to the concept of dark energy, which is thought to account for more than 68% of all the energy in the currently observable universe, while dark matter and ordinary matter account for about 27% and 5% respectively. </br></br>"Measurements of redshift suggest that the accelerating expansion is adiabatic [without heat transfer] and anisotropic [varying in magnitude when measured in different directions]," said Mariano de Souza, a professor in the Department of Physics at São Paulo State University (UNESP) in Rio Claro, Brazil. </br></br>"Fundamental concepts in thermodynamics allow us to infer that adiabatic expansion is always accompanied by cooling due to the barocaloric effect [pressure-induced thermal change], which is quantified by the Grüneisen ratio [Γ, gamma]." </br></br>In 1908, German physicist Eduard August Grüneisen (1877–1949) proposed a mathematical expression for Γeff, the effective Grüneisen parameter, an important quantity in geophysics that often occurs in equations describing the thermoelastic behavior of material. </br></br>Almost a century later, in 2003, Lijun Zhu and collaborators demonstrated that a specific part of the Grüneisen parameter called the Grüneisen ratio, defined as the ratio of thermal expansion to specific heat, increases significantly in the vicinity of a quantum critical point owing to the accumulation of entropy. </br></br>In 2010, Souza and two German collaborators showed that the same thing happens near a finite-temperature critical point. </br></br>Now Souza and fellow researchers at UNESP have used the Grüneisen parameter to describe intricate aspects of the expansion of the universe in an article published in the journal Results in Physics, presenting part of the Ph.D. research of first author Lucas Squillante, currently a postdoctoral fellow under Souza's supervision. </br></br>"The dynamics associated with the expansion of the universe are generally modeled as a perfect fluid whose equation of state is ω = p/ρ, where ω [omega] is the equation of state parameter, p is pressure, and ρ [rho] is energy density. </br></br>Although ω is widely used, its physical meaning hadn't yet been appropriately discussed. </br></br>It was treated as merely a constant for each era of the universe. </br></br>One of the important results of our research is the identification of ω with the effective Grüneisen parameter by means of the Mie-Grüneisen equation of state," Souza said. </br></br>The Mie–Grüneisen equation of state relates to pressure, volume and temperature, and is often used to determine the pressure in a shock-compressed solid. </br></br>The authors show, using the Grüneisen parameter, that continuous cooling of the universe is associated with a barocaloric effect that relates pressure and temperature and occurs owing to adiabatic expansion of the universe. </br></br>On this basis, they propose that the Grüneisen parameter is time-dependent in the dark energy-dominated era (the current universe era). </br></br>One of the interesting aspects of this research is its use of thermodynamics and solid-state physics concepts such as stress and strain to describe the anisotropic expansion of the universe. </br></br>"We show that the Grüneisen parameter is naturally embodied in the energy–momentum stress tensor in Einstein's famous field equations, opening up a novel way to investigate anisotropic effects associated with the expansion of the universe. </br></br>These don't rule out the possibility of a Big Rip," Souza said. </br></br>The Big Rip hypothesis, first put forward in 2003 in an article published in Physical Review Letters, posits that if the quantity of dark energy is sufficient to accelerate the expansion of the universe beyond a critical velocity, this could tear the "fabric" of space-time and rip apart the universe. </br></br>"Also in the perspective of the Grüneisen parameter, we conjecture that the shift from a decelerating expansion regime [in the radiation and matter-dominated eras] to an accelerating expansion regime [in the dark energy-dominated era] resembles a thermodynamic phase transition. </br></br>This is because Γeff changes sign when the expansion changes from decelerating to accelerating. </br></br>The sign change resembles the typical signature of phase transitions in condensed matter physics," Souza said. </br></br>Dark energy is often associated with the cosmological constant Λ [lambda], originally introduced by Einstein in 1917 as a repulsive force required to keep the universe in static equilibrium. </br></br>Einstein later rejected the concept, according to some accounts. </br></br>It was rehabilitated when the expansion of the universe was found to be accelerating instead of decelerating. </br></br>The hegemonic model, known as Λ-CMD (Lambda-Cold Dark Matter), gives the cosmological constant a fixed value. </br></br>That is, it assumes that the density of dark energy remains constant as the universe expands. </br></br>However, other models assume that the density of dark energy, and hence Λ, vary over time. </br></br>"Assigning a fixed value to lambda means also assigning a fixed value to omega, but recognition of ω as the effective Grüneisen parameter enables us to infer time dependency for ω as the universe expands in the dark energy-dominated era. </br></br>This directly entails time dependency for Λ, or the universal gravitation constant," Souza said. </br></br>The study could lead to important developments insofar as it affords a glimpse of a novel interpretation of the expansion of the universe in terms of thermodynamics and condensed matter physics. </br></br>Besides Souza and Squillante, the other co-authors of the article are Antonio Seridonio (UNESP Ilha Solteira), Roberto Lagos-Monaco (UNESP Rio Claro), Gabriel Gomes (Institute of Astronomy, Geophysics and Atmospheric Sciences, University of São Paulo, IAG-USP), Guilherme Nogueira (UNESP Rio Claro), and Ph.D. candidate Isys Mello, supervised by Souza.
+                            <!-- <img src="/assit/b.jpg" height="400" width="800"  > -->
+                          </br></br>
+                          <span class="line"> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </span>
+                          </br>
+                          <span>          
+                          <span style="font-weight: bold; color: black; font-size: 22px;">Story Source:</span>   </br></br>          
+                            <a href="https://phys.org/partners/fapesp/" target="_blank">Provided by FAPESP</a>
+                            
+                          </span>
+                          </br></br></br></br>
+                        </p>  
+                        
+                    
+                                     
+                    </div>
+                    <div class="containered">
+                      {% if user_name %}
+                      <div class="star-widget">
+                          <input type="radio" name="rate" id="rate-5">
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4">
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3">
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2">
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1">
+                          <label for="rate-1" class="fas fa-star"></label>
+                          <form id="ratingForm">
+                              <header></header>
+                              <div class="textarea">
+                                  <textarea id="ratingComment" cols="30" placeholder="Describe your experience.."></textarea>
+                              </div>
+                              <div class="btn">
+                                  <button class="button-rate" type="submit">Post</button>
+                              </div>
+                          </form>
+                      </div>
+                      {% else %}
+                      <div class="star-widget" style="pointer-events: none;">
+                          <input type="radio" name="rate" id="rate-5" disabled>
+                          <label for="rate-5" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-4" disabled>
+                          <label for="rate-4" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-3" disabled>
+                          <label for="rate-3" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-2" disabled>
+                          <label for="rate-2" class="fas fa-star"></label>
+                          <input type="radio" name="rate" id="rate-1" disabled>
+                          <label for="rate-1" class="fas fa-star"></label>
+                      </div>
+                      <div class="login-to-rate">Login to rate this.</div>
+                      {% endif %}
+                  </div>
+                  
+                </div>
+              </br></br></br></br></br></br>
+        </div>
+        </div>
+      </div> 
+      </div> 
+
+<script>
+function fetchAndDisplayAverageRating() {
+    fetch('/get_average_rating')
+    .then(response => response.json())
+    .then(data => {
+        const averageRating = Math.round(data.average_rating); // Round to the nearest integer
+        console.log('Average rating:', averageRating);
+
+        // Set the checked state of the radio inputs based on the average rating
+        const ratingInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+        ratingInputs.forEach(input => {
+            const ratingValue = parseInt(input.id.split('-')[1]);
+            input.checked = ratingValue === averageRating;
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching average rating:', error);
+    });
+}
+
+// Function to submit rating
+function hasUserSubmittedRating(username) {
+    return localStorage.getItem(`hasSubmittedRating_${username}`) === 'true';
+}
+
+// Function to set the flag indicating that the user has submitted a rating
+function setUserSubmittedRating(username) {
+    localStorage.setItem(`hasSubmittedRating_${username}`, 'true');
+}
+
+// Function to submit rating
+function submitRating() {
+    const ratingForm = document.getElementById("ratingForm");
+    const postDiv = document.querySelector('.posted');
+    const starInputs = document.querySelectorAll('.star-widget input[type="radio"]');
+
+    ratingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = "{{ user_name }}"; // Replace this with the logic to get the username
+
+        // Check if the current user has already submitted a rating
+        if (hasUserSubmittedRating(username)) {
+            console.log('You have already submitted a rating.');
+            return;
+        }
+
+        console.log('Form submitted'); // Debugging output
+
+        const checkedStar = document.querySelector('input[name="rate"]:checked');
+        const rating = checkedStar ? parseInt(checkedStar.id.split('-')[1]) : 0;
+
+        console.log('Rating:', rating); // Debugging output
+
+        // Send rating and comment to server
+        fetch('/save_rating', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({rating: rating})
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Rating submitted successfully');
+                // Hide the "Post" button and show the "Thanks for rating us!" message
+                ratingForm.style.display = 'none';
+                postDiv.style.display = 'block';
+                // Set flag indicating that the current user has submitted a rating
+                setUserSubmittedRating(username);
+                // Disable star inputs to prevent further rating changes
+                starInputs.forEach(input => {
+                    input.disabled = true;
+                });
+            } else {
+                console.error('Failed to submit rating:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting rating:', error);
+        });
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch and display average rating on page load
+    fetchAndDisplayAverageRating();
+    // Submit rating
+    submitRating();
+});
+
+      </script>
+
+
+      <script src="/static/js/script.js"></script>
+
+
+
+        
+        <footer>
+          <p>&copy; 2024 WorkHard. All rights reserved.</p>
+        </footer>
+       
+
+</body>
+</html>

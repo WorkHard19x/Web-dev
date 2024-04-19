@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/CSS/register.css">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<title>Verification_Code</title>
+<style>
+  .search-results-container {
+    width: 99%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10% 1px ;
+    height: 100%;
+    top:66px;
+    border: 1px solid transparent;
+    position: relative;
+    justify-content: center; 
+    background-color: transparent;
+  }
+  section{
+    position: relative;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid rgba(225, 225, 225, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 5rem;
+    top: -95px;
+}
+h1{
+    font-size:1.8rem;
+    color: white;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    max-width: 310px;
+    border-bottom: 2px solid white;
+}
+.inputbox label{
+    position:absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.5s ease-in-out;
+}
+input:focus ~ label,
+input:valid ~label{
+    top:5px;
+}
+.inputbox input {
+    width: calc(100% - 40px); /* Adjust this value to accommodate the icon */
+    height: 60px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: white;
+    padding-right: 40px; /* Ensure space for the icon */
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: white;
+    font-size: 1.2rem;
+    top:20px;
+}
+.forget{
+    margin: 35px 0;
+    font-size: 0.85rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.forget label{
+    display: flex;
+    align-items: center;
+}
+.forget label input{
+    margin-right: 3px;
+}
+.forget a{
+    color:white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.forget a:hover{
+    text-decoration: underline;
+}
+section button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgba(225, 225, 225, 1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+section button:hover{
+    background-color: rgb(225, 225,225,0.5);
+}
+.register{
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: underline;
+    color: rgb(5, 248, 25);
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
+}
+
+/* #message-box {
+    position: fixed;
+    top:100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(9, 255, 0, 0.8); 
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    z-index: 9999; 
+    transition: opacity 0.3s ease-in-out;
+} */
+
+
+.inputs{
+    margin-top: 10px;
+}
+.inputs input{
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    border: none;
+    border-bottom: 2.5px solid #eb0909;
+    margin: 20px 10px;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+.inputs input:focus{
+    border-bottom: 1.5px solid #366196;
+}
+
+
+
+
+
+
+
+#message-box {
+    position: fixed;
+    top:100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(9, 255, 0, 0.8); 
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 20px;
+    z-index: 9999; 
+    transition: opacity 0.3s ease-in-out;
+    display: none; /* Initially hide the message box */
+  } 
+  @media screen and (max-width: 1000px) {
+
+    .search-results-container {
+    width: 99%; 
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20% 1px ;
+    height: 100%;
+    top:66px;
+    border: 1px solid transparent;
+    position: relative;
+    justify-content: center; 
+    background-color: transparent;
+  }
+
+  }
+  @media screen and (max-width:350px) {
+        .search-results-container {
+        width: 99%; 
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20% 1px ;
+        height: 100%;
+        top:66px;
+        border: 1px solid transparent;
+        position: relative;
+        justify-content: center; 
+        background-color: transparent;
+    }      
+    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <header class="header">
+        <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+        <a href="/index" class="title-color" >
+          <span class="W">W</span>
+          <span class="O">O</span>
+          <span class="R">R</span>
+          <span class="K">K</span>
+          <span class="H">H</span>
+          <span class="A">A</span>
+          <span class="Rr">R</span>
+          <span class="D">D</span>
+          
+      </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li class="search">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+               <button onclick="searchPosts()" class="search-button">Search</button>
+            </li>
+            <li><a href="/index">Home</a></li>
+            <li class="dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                <div id="aboutDropdown" class="dropdown-content">
+                <div class="dropdown-content">
+                    <a href="/math">Mathematics</a>
+                    <a href="/physics">Physics</a>
+                    <a href="/code">Code</a>
+                </div>
+            </li>
+            <li><a href="/about"  id="about-link">About</a></li>
+            <li><a href="/contract" id="contract-link">Contact</a></li>
+            <li class="user-dropdown-container">
+              {% if user_name %}
+              <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+              <div id="userDropdown" class="user-dropdown-content">
+                  <a href="/profile">Profile</a>
+                  <a href="/security">Security</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+              </div>
+              {% else %}
+              <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+              {% endif %}
+          </li>
+        </ul>
+        
+    </header>
+
+    <div class="search-results-container">
+        <section>
+            <form id="getlink-form" action="{{ url_for('Verification_Code') }}" method="POST">
+                <h1>Verification Code </h1>
+                <p style="color:white; font-size: 16px; opacity: 0.8;">If you haven't received a verification code in your inbox, please check your spam and junk folders</p>
+                <div class="inputs">
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                    <input type="text" name="verification_code[]" maxlength="1" required>
+                </div>
+                
+                <button type="submit">Verify Me</button>
+            </form>
+        </section>
+    </div>
+    
+
+    <script>
+        const inputs = document.querySelectorAll('.inputs input');
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value;
+                if (value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+        });
+
+        inputs[0].addEventListener('paste', (e) => {
+            const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+            for (let i = 0; i < pastedText.length && i < inputs.length; i++) {
+                inputs[i].value = pastedText[i];
+                if (i < inputs.length - 1) {
+                    inputs[i + 1].focus();
+                }
+            }
+        });
+
+        function submitForm(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        // Your form submission logic here
+        
+        // Redirect to getlink.html after 3 seconds
+        setTimeout(function() {
+            window.location.href = "/enterpaswork";
+        }, 3000);
+    }
+    </script>
+
+    <!-- <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Your form submission logic here
+            
+            // Redirect to getlink.html after 3 seconds
+            setTimeout(function() {
+                window.location.href = "/enterpaswork";
+            }, 3000);
+        }
+    </script> -->
+
+
+
+<script src="/static/js/script.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+<footer>
+    <p>&copy; 2024 WorkHard. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
