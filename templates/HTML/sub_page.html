@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/CSS/subcrible.css">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<title>Subcrible {{user_name}}</title>
+
+</head>
+<body>
+
+    <header class="header">
+        <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+        <a href="/index" class="title-color" >
+          <span class="W">W</span>
+          <span class="O">O</span>
+          <span class="R">R</span>
+          <span class="K">K</span>
+          <span class="H">H</span>
+          <span class="A">A</span>
+          <span class="Rr">R</span>
+          <span class="D">D</span>
+          
+      </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li class="search">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+               <button onclick="searchPosts()" class="search-button">Search</button>
+            </li>
+            <li><a href="/index">Home</a></li>
+            <li class="dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                <div id="aboutDropdown" class="dropdown-content">
+                <div class="dropdown-content">
+                    <a href="/math">Mathematics</a>
+                    <a href="/physics">Physics</a>
+                    <a href="/code">Code</a>
+                </div>
+            </li>
+            <li><a href="/about"  id="about-link">About</a></li>
+            <li><a href="/contract" id="contract-link">Contact</a></li>
+            <li><a href="/subcrible" id="VIP-link" class="vip-icon"><i class="fas fa-crown" style="background-color: gold; border-radius: 10px;">VIP</i></a></li>
+
+
+            
+            <li class="user-dropdown-container">
+              {% if user_name %}
+              <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+              <div id="userDropdown" class="user-dropdown-content">
+                  <a href="/profile">Profile</a>
+                  <a href="/security">Security</a>
+                  <a href="/sub_page">Subcrible</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+              </div>
+              {% else %}
+              <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+              {% endif %}
+          </li>
+        </ul>
+    </header>
+
+    
+    <style>
+
+        .container-page {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          position: relative;
+          top:80px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .username{
+          padding-left: 15%;
+          border: 1px solid red;
+        }
+
+      </style>
+
+      {% if user_name %}
+    <div class="container-page">
+        <h2 style="display: flex; justify-content: center; text-align: center;">Subscription </h2>
+        
+          
+        
+        <div class="username">
+          Name: <span >{{user_name}}</span>
+          {% if subscription %}
+                <p>Subscription: {{ subscription }} days</p>
+            {% else %}
+                <p>Subscription: <a href="/subcrible">Subscribe Now</a></p>
+                <p>Cancel: <a href="" style="text-decoration: none;">Unsubscribe</a></p>
+            {% endif %}
+          
+        </div>
+      {% endif %}
+
+
+    </div>
+
+      <script>
+        
+      </script>
+
+
+<script src="/static/js/script.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+<footer>
+    <p>&copy; 2024 WorkHard. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>

@@ -293,7 +293,7 @@ a {
 .dropbtn {
   background-color: transparent;
   color: rgb(0, 0, 0)505;
-  padding: 25px ;
+  padding: 25px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -363,7 +363,7 @@ a {
 
 .container img{
   vertical-align: middle;
-  width: 50%;
+  width: 100%;
   height: 600px;
  
 }
@@ -394,13 +394,13 @@ width: 100%;
   -webkit-user-select: none;
 }
 .next {
-  right:405px;
+  right:0;
   border-radius: 3px 0 0 3px;
   background-color: black;
   opacity: 0.5;
 }
 .prev {
-  left:462px;
+  left:0;
   border-radius: 3px 0 0 3px;
   background-color: black;
   opacity: 0.3;
@@ -589,7 +589,7 @@ li:hover .user-dropdown-content {
 }
 
 
-@media screen and (max-width: 992px )  {
+@media screen and (max-width: 1050px )  {
   .header li a {
     display: block;
     padding: 25px 1px;
@@ -617,7 +617,15 @@ li:hover .user-dropdown-content {
     width: 100%;
     padding-top: 30px;
   }
-
+  .dropbtn {
+    background-color: transparent;
+    color: rgb(0, 0, 0)505;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
   .Home-nav{
     margin-left: auto;
     margin-right: auto;
@@ -673,6 +681,9 @@ li:hover .user-dropdown-content {
     padding: 25px 5px;
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
+  }
+  .dropbtn{
+    
   }
   .header .menu-icon {
     cursor: pointer;

@@ -1,6 +1,8 @@
 <html>
     <head>
         <link rel="stylesheet" href="/static/CSS/index.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
         <title>Home</title>
       </head>
     <body>
@@ -26,7 +28,6 @@
                   <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
                    <button onclick="searchPosts()" class="search-button">Search</button>
                 </li>
-                <li><a href="/index">Home</a></li>
                 <li class="dropdown">
                     <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
                     <div id="aboutDropdown" class="dropdown-content">
@@ -38,12 +39,15 @@
                 </li>
                 <li><a href="/about"  id="about-link">About</a></li>
                 <li><a href="/contract" id="contract-link">Contact</a></li>
+                <li><a href="/subcrible" id="VIP-link" class="vip-icon"><i class="fas fa-crown" style="background-color: gold; border-radius: 10px;">VIP</i></a></li>
+
                 <li class="user-dropdown-container">
                   {% if user_name %}
                   <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
                   <div id="userDropdown" class="user-dropdown-content">
                       <a href="/profile">Profile</a>
                       <a href="/security">Security</a>
+                      <a href="/sub_page">Subcrible</a>
                       <a href="{{ url_for('logout') }}">Logout</a>
                   </div>
                   {% else %}

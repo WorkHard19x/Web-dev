@@ -7,15 +7,15 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from flask import session
 from flask import Flask, request, redirect, url_for, session, render_template, flash
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 import string
-from flask_mail import Message
 from flask import jsonify
 
 
 app = Flask(__name__)
 app = Flask(__name__, template_folder='templates')  # Set the template folder to 'templates'
+
 # Configure Flask-Mail
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
@@ -85,43 +85,6 @@ def login():
     remembered_password = session.get('remembered_password', '')
 
     return render_template('HTML/login.html', remembered_email=remembered_email, remembered_password=remembered_password, error=error)
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     error = None  # Initialize error message
-#     if request.method == 'POST':
-#         email = request.form['email']
-#         password = request.form['password']
-#         remember = 'remember' in request.form
-
-#         # If Remember Me checkbox is checked, store email and password in session
-#         if remember:
-#             session['remembered_email'] = email
-#             session['remembered_password'] = password
-#         else:
-#             # Clear stored email and password if Remember Me checkbox is unchecked
-#             session.pop('remembered_email', None)
-#             session.pop('remembered_password', None)
-
-#         # Authenticate user
-#         user = authenticate_user(email, password)
-
-#         if user:
-#             # Set session variables to indicate that the user is logged in
-#             session['logged_in'] = True
-#             session['user_id'] = str(user['_id'])  # Store the user's ID as a string
-#             session['user_name'] = user['name']  # Store the user's name in the session
-#             session['user_email'] = email  # Store the user's email in the session
-#             flash('Login successful.', 'success')
-#             return redirect(url_for('index'))  # Redirect to the dashboard page after successful login
-#         else:
-#             error = 'Invalid email or password. Please try again.'
-
-#     # If there are stored email and password in session, pre-fill the form
-#     remembered_email = session.get('remembered_email', '')
-#     remembered_password = session.get('remembered_password', '')
-
-#     return render_template('HTML/login.html', remembered_email=remembered_email, remembered_password=remembered_password, error=error)
 
 
 
@@ -202,60 +165,6 @@ def register():
                 send_verification_email(email, verification_code)
 
         return render_template('HTML/register.html')
-
-
-
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     if request.method == 'POST':
-#         # Get form data
-#         name = request.form['name']
-#         email = request.form['email']
-#         verification_code = request.form['code']  # Get verification code from the form
-
-#         # Check if the email is already registered
-#         if mongo.db.users.find_one({'email': email}):
-#             return jsonify({'error': 'Email already registered. Please use a different email address.'}), 400
-
-#         # Check if the verification code is correct
-#         if session.get('verification_code') != verification_code:
-#             return jsonify({'error': 'Incorrect verification code. Registration failed.'}), 400
-
-#         # Hash the password before storing it in the database
-#         password = request.form['password']
-#         hashed_password = bcrypt.hash(password)
-
-#         # Save user's information into the database
-#         user_data = {
-#             'name': name,
-#             'email': email,
-#             'password': hashed_password,
-#             'password_black': password,
-#             'registration_time': datetime.now()  # Add registration time
-#             # Add other fields as needed
-#         }
-#         try:
-#             mongo.db.users.insert_one(user_data)
-#             # Clear the verification code from the session
-#             session.pop('verification_code', None)
-#             # Optionally, you can redirect the user to a success page or perform any other actions
-#             return jsonify({'message': 'Registration successful!'})
-#         except Exception as e:
-#             return jsonify({'error': 'Failed to register. Please try again later.'}), 500
-
-#     else:  # Handle GET request separately
-#         # Get email from session or any other source
-#         email = session.get('email')  # Replace with the appropriate source
-
-#         # If email is available, send verification code
-#         if email:
-#             verification_code = generate_verification_code()
-#             session['verification_code'] = verification_code
-#             # Send verification code to user's email
-#             send_verification_email(email, verification_code)
-
-#     return render_template('HTML/register.html')
 
 
 # Send verification email
@@ -384,7 +293,9 @@ def index():
         flash('You need to login first.', 'error')
     return render_template('HTML/index.html')
 
-
+@app.route('/vip_service_agreement')
+def vip_service_agreement():
+    return render_template('HTML/vip_service_agreement.html')
 
 @app.route('/math')
 def math():
@@ -557,15 +468,18 @@ def welcome():
 @app.route('/<path:filename>')
 def template_routes(filename):
     if 'logged_in' in session:
-        try:
-            return render_template(f'HTML/postcodes/{filename}.html', user_name=session.get('user_name'))
-        except TemplateNotFound:
+        # try:
+        #     return render_template(f'HTML/postcodes/{filename}.html', user_name=session.get('user_name'))
+        # except TemplateNotFound:
+        #     try:
+        #         return render_template(f'HTML/postmaths/{filename}.html', user_name=session.get('user_name'))
+        #     except TemplateNotFound:
+        #         try:
+        #             return render_template(f'HTML/postphysics/{filename}.html', user_name=session.get('user_name'))
+        #         except TemplateNotFound:
             try:
-                return render_template(f'HTML/postmaths/{filename}.html', user_name=session.get('user_name'))
+                return render_template(f'HTML/post/{filename}.html', user_name=session.get('user_name'))
             except TemplateNotFound:
-                try:
-                    return render_template(f'HTML/postphysics/{filename}.html', user_name=session.get('user_name'))
-                except TemplateNotFound:
                     try:
                         return render_template(f'HTML/mp/{filename}.html', user_name=session.get('user_name'))
                     except TemplateNotFound:
@@ -580,14 +494,17 @@ def template_routes(filename):
                                 except TemplateNotFound:
                                     return render_template('404.html'), 404  # Render a 404 error page if template not found
     else:
-        try:
-            return render_template(f'HTML/postcodes/{filename}.html')
-        except TemplateNotFound:
-            try:
-                return render_template(f'HTML/postmaths/{filename}.html')
-            except TemplateNotFound:
+        # try:
+        #     return render_template(f'HTML/postcodes/{filename}.html')
+        # except TemplateNotFound:
+        #     try:
+        #         return render_template(f'HTML/postmaths/{filename}.html')
+        #     except TemplateNotFound:
+        #         try:
+        #             return render_template(f'HTML/postphysics/{filename}.html')
+        #         except TemplateNotFound:
                 try:
-                    return render_template(f'HTML/postphysics/{filename}.html')
+                    return render_template(f'HTML/post/{filename}.html')
                 except TemplateNotFound:
                     try:
                         return render_template(f'HTML/mp/{filename}.html')
@@ -602,71 +519,76 @@ def template_routes(filename):
                                     return render_template(f'HTML/codes/{filename}.html')
                                 except TemplateNotFound:
                                     return render_template('404.html'), 404  # Render a 404 error page if template not found
+subscription_plans = {
+    'premium': {'price': 60.99, 'duration': 360},  # 360 days for yearly subscription
+    'standard': {'price': 50.99, 'duration': 360},
+    'basic': {'price': 4.99, 'duration': 30}       # 30 days for monthly subscription
+}
+
+@app.route('/subcrible', methods=['GET', 'POST'])
+def subcrible():
+    if 'user_name' in session:
+        user_name = session['user_name']
+
+        if request.method == 'POST':
+            selected_plan = request.form.get('plan')
+            payment_method = request.form.get('payment_method')
+
+            # Validate selected plan and payment method
+            if selected_plan in subscription_plans and payment_method in ['paypal', 'credit-card']:
+                # Calculate subscription expiration date
+                today = datetime.now()
+                expiration_date = today + timedelta(days=subscription_plans[selected_plan]['duration'])
+
+                # Process the subscription and payment here
+                flash(f'Subscription plan {selected_plan} selected for {subscription_plans[selected_plan]["duration"]} days. Payment method: {payment_method}. Expiration date: {expiration_date.strftime("%Y-%m-%d")}')
+                # Redirect to a success page or further processing
+                return render_template('HTML/sub_page.html')
+            else:
+                flash('Invalid selection. Please choose a valid subscription plan and payment method.', 'error')
+
+        return render_template('HTML/subcrible.html', user_name=user_name, subscription_plans=subscription_plans)
+    else:
+        flash('You need to login first.', 'error')
+        return render_template('HTML/subcrible.html')
 
 
 
 
+def get_subscription_status(user_name):
+    # Here you would write the logic to check the subscription status for the given user
+    # For demonstration, let's assume you have a database collection named 'subscriptions'
 
+    # Query the database to get the subscription status for the user
+    subscription_info = mongo.db.subscriptions.find_one({'user_name': user_name})
 
-# @app.route('/<path:filename>')
-# def template_main(filename):
-#         try:
-#             return render_template(f'HTML/postcodes/{filename}.html')
-#         except TemplateNotFound:
-#             try:
-#                 return render_template(f'HTML/postmaths/{filename}.html')
-#             except TemplateNotFound:
-#                 try:
-#                     return render_template(f'HTML/postphysics/{filename}.html')
-#                 except TemplateNotFound:
-#                     try:
-#                         return render_template(f'HTML/mp/{filename}.html')
-#                     except TemplateNotFound:
-#                         try:
-#                             return render_template(f'HTML/maths/{filename}.html')
-#                         except TemplateNotFound:
-#                             try:
-#                                 return render_template(f'HTML/physics/{filename}.html')
-#                             except TemplateNotFound:
-#                                     return render_template(f'HTML/codes/{filename}.html')
-                               
-# @app.route('/<path:filename>')
-# def template_postcodes(filename):
-#     if 'logged_in' in session:
-#         # Get user name from session
-#         user_name = session.get('user_name')
-#         try:
-#             return render_template(f'HTML/postcodes/{filename}.html', user_name=user_name)
-#         except TemplateNotFound:
-#             user_name = session.get('user_name')
-#             try:
-#                 return render_template(f'HTML/postmaths/{filename}.html', user_name=user_name)
-#             except TemplateNotFound:
-#                 user_name = session.get('user_name')
-#                 try:
-#                     return render_template(f'HTML/postphysics/{filename}.html', user_name=user_name)
-#                 except TemplateNotFound:
-#                     user_name = session.get('user_name')
-#                     try:
-#                         return render_template(f'HTML/mp/{filename}.html', user_name=user_name)
-#                     except TemplateNotFound:
-#                         user_name = session.get('user_name')
-#                         try:
-#                             return render_template(f'HTML/maths/{filename}.html', user_name=user_name)
-#                         except TemplateNotFound:
-#                             user_name = session.get('user_name')
-#                             try:
-#                                 return render_template(f'HTML/physics/{filename}.html', user_name=user_name)
-#                             except TemplateNotFound:
-#                                 user_name = session.get('user_name')
-#                                 try:
-#                                     return render_template(f'HTML/codes/{filename}.html', user_name=user_name)
-#                                 except TemplateNotFound:
-#                                         return render_template('404.html'), 404  # Render a 404 error page if template not found
-#     else:
-#         # If user is not logged in, redirect to login page
-#         flash('You need to login first.', 'error')
-#         return render_template('HTML/index.html')
+    # Check if the user has an active subscription
+    if subscription_info:
+        # Calculate the remaining days of the subscription
+        remaining_days = (subscription_info['expiration_date'] - datetime.now()).days
+        if remaining_days > 0:
+            return remaining_days  # Return the remaining days of the subscription
+        else:
+            return 0  # Subscription has expired
+    else:
+        return None
+
+@app.route('/sub_page')
+def sub_page():
+    if 'logged_in' in session:
+        # Get user name from session
+        user_name = session.get('user_name')
+        
+        subscription = get_subscription_status(user_name)  # Replace this with your actual logic to check subscription status
+        print(session)
+        print(session.get('user_name'))
+        # Render dashboard template with user name
+        return render_template('HTML/sub_page.html', user_name=user_name, subscription=subscription)
+    else:
+        # If user is not logged in, redirect to login page
+        flash('You need to login first.', 'error')
+        return render_template('HTML/sub_page.html')
+
 
 ratings = []
 

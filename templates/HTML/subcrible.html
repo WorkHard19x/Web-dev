@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/static/CSS/subcrible.css">
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<title>Subcrible {{user_name}}</title>
+
+</head>
+<body>
+
+    <header class="header">
+        <!-- <a href="/HTML/index.html" class="logo" ><img src="/logo/logo.png"></a> -->
+        <a href="/index" class="title-color" >
+          <span class="W">W</span>
+          <span class="O">O</span>
+          <span class="R">R</span>
+          <span class="K">K</span>
+          <span class="H">H</span>
+          <span class="A">A</span>
+          <span class="Rr">R</span>
+          <span class="D">D</span>
+          
+      </a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
+        <ul class="menu">
+            <li class="search">
+              <input type="text" id="searchInput" class="search-input" placeholder="Search for posts...">
+               <button onclick="searchPosts()" class="search-button">Search</button>
+            </li>
+            <li class="dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">Subjects</button>
+                <div id="aboutDropdown" class="dropdown-content">
+                <div class="dropdown-content">
+                    <a href="/math">Mathematics</a>
+                    <a href="/physics">Physics</a>
+                    <a href="/code">Code</a>
+                </div>
+            </li>
+            <li><a href="/about"  id="about-link">About</a></li>
+            <li><a href="/contract" id="contract-link">Contact</a></li>
+            <li><a href="/subcrible" id="VIP-link" class="vip-icon" ><i class="fas fa-crown" style="background-color: gold; border-radius: 10px;">VIP</i></a></li>
+
+            <li class="user-dropdown-container">
+              {% if user_name %}
+              <a href="#" onclick="toggleUserDropdown()">{{ user_name }}</a> <!-- Display username if logged in -->
+              <div id="userDropdown" class="user-dropdown-content">
+                  <a href="/profile">Profile</a>
+                  <a href="/security">Security</a>
+                  <a href="/sub_page">Subcrible</a>
+                  <a href="{{ url_for('logout') }}">Logout</a>
+              </div>
+              {% else %}
+              <a href="/login" id="login-link">Log In</a> <!-- Display login link if not logged in -->
+              {% endif %}
+          </li>
+        </ul>
+    </header>
+
+    
+    <style>
+
+        .container-page {
+          max-width: 600px;
+          margin: 0 auto;
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          position: relative;
+          top:80px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .offer {
+          background-color: #f0f0f0;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 6px;
+        }
+        .price {
+          color: #d10000;
+          font-size: 24px;
+          font-weight: bold;
+        }
+        .price-pre {
+          color: #d10000;
+          font-size: 24px;
+          font-weight: bold;
+          padding-top: 7px;
+        }
+        .discount {
+          color: #388e3c;
+          font-size: 18px;
+        }
+        .payment-methods {
+          margin-top: 30px;
+        }
+        .payment-method {
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          text-align: center;
+          cursor: pointer;
+        }
+        .payment-method:hover {
+          background-color: #eee;
+        }
+        .join-vip {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          margin-top: 20px;
+          background-color: #5f6368;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        .join-vip:hover {
+          background-color: #45494c;
+        }
+        .subscription-plans {
+        display: flex;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        }
+
+        .subscription-plan {
+        padding: 20px;
+        flex: 1;
+        }
+
+        .subscription-plan:first-child {
+        border-top: 1px solid #ccc;
+        }
+
+        .subscription-plan:last-child {
+        border-right: none;
+        }
+
+        .subscription-plan.premium {
+        border-left: 5px solid #f00;
+        padding-left: 15px;
+        }
+
+        .subscription-plan.standard {
+        border-left: 5px solid rgb(25, 0, 255);
+        padding-left: 15px;
+        }
+        .subscription-plan.basic {
+        border-left: 5px solid rgb(7, 161, 250);
+        padding-left: 15px;
+        }
+        .subscription-plan h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .subscription-plan .price {
+        font-weight: bold;
+        }
+
+        .subscription-plan .price-pre {
+        font-weight: bold;
+        }
+
+        .subscription-plan .discount {
+        color: red;
+        padding-left: 7px;
+        }
+
+        .subscription-plan .was {
+        font-size: 20px;
+        }
+
+        .container-page button {
+        margin-top: 10px;
+        }
+        .check-boxes {
+        margin-top: 20px;
+        }
+        .line-coupon{
+        border-bottom: 2px solid rgba(80, 78, 78, 0.411);
+        opacity: 0.5;
+        }
+
+        .checkboxx {
+        margin-bottom: 10px;
+        }
+
+        .checkboxx input[type="checkbox"] {
+        margin-right: 10px;
+        }
+
+      #cardInfo {
+      display: block;
+      padding: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+     
+      }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 0;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .card-label {
+      width: 200px;
+      font-size: 14px;
+      text-align: right;
+      margin-right: 8px;
+    }
+
+    .card-input {
+      flex-grow: 1;
+    }
+
+    .card-input input {
+      width: 100%;
+      height: 35px;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .card-info .span-word{
+      display: flex;
+      text-align: center;
+      font-size: 12px;
+      padding-left: 90px;
+      padding-right: 30px;
+      color: #626364e0;
+    }
+  .paypal{
+      display: none;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      text-align: center;
+      
+  }
+
+
+      </style>
+
+{% if user_name %}
+    <div class="container-page">
+        <h2>VIP Subscription</h2>
+
+        <div class="subscription-plans">
+            <div class="subscription-plan premium" id="premium">
+              <h2>Premium</h2>
+              <p>Yearly Subscription:  <span class="was">$89.99 </span>
+                <span class="discount"> 40% OFF</span>
+                 </p>
+                 <span class="price-pre">$60.99</span>
+              <p>Offer ends April 25th.</p>
+              <input type="hidden" name="plan" value="premium">
+
+              <button id="premiun-button">Join VIP</button>
+            </div>
+          
+            <div class="subscription-plan standard" id="standard">
+              <h2>Standard</h2>
+              <p>Yearly Subscription: <span class="price">$50.99</span></p>
+              <input type="hidden" name="plan" value="standard">
+              <button id="yearly-button">Join VIP</button>
+            </div>
+          
+            <div class="subscription-plan basic" id="basic">
+              <h2>Standard</h2>
+              <p>Monthly Subscription: <span class="price">$4.99</span></p>
+              <input type="hidden" name="plan" value="basic">
+              <button id="monthly-button">Join VIP</button>
+            </div>
+          </div>
+        <div class="payment-methods">
+          <div class="payment-method" id="paypal">PayPal</div>
+          
+            <p class="paypal" id="card-paypal">PayPal: </p>
+
+          <div class="payment-method" id="credit-card">Credit/Debit Card</div>
+            <div class="card-info" id="cardInfo"  style="display: none;">
+              <div class="card-row">
+                <span class="card-label">Credit card number:</span>
+                <div class="card-input">
+                  <input type="text" placeholder="1234 5678 9012 3456" />
+                </div>
+              </div>
+              <div class="card-row">
+                <span class="card-label">Expiration date (MM/YY):</span>
+                <div class="card-input">
+                  <input type="text" placeholder="MM/YY" />
+                </div>
+              </div>
+              <div class="card-row">
+                <span class="card-label">CVV:</span>
+                <div class="card-input">
+                  <input type="text" placeholder="123" />
+                </div>
+              </div>
+              <span class="span-word">Workhard is equipped with the most authoritative information security certification (PCI-DSS)
+                 in the worldwide payment cards industry to encrypt and protect bank card information.
+                  Please be assured that Workhard does not have the authority to directly access bank card information.</span>
+            </div>
+        </div>
+        <div class="check-boxes">
+            <label for="coupon">Coupon</label>
+            <div class="checkboxx">
+            <input type="text" id="coupon" name="coupon" autocomplete="off">
+            <button type="submit">Apply</button>
+        </div> </br>
+            <div class="line-coupon"></div>   </br>
+            <div class="checkboxx">
+              <input type="checkbox" id="agreed" name="agree" required>
+              <label for="agree">I agree to the <a href="/vip_service_agreement" target="_blank">VIP Service Agreement</a></label>
+            </div>
+            <div id="agree-message" style="color: red; display: none;">Please agree to the VIP Service Agreement.</div>
+
+          </div>
+        <!-- <button class="join-vip" onclick="window.open('payment-page.html', '_blank')">Join VIP</button></br></br></br></br></br> -->
+        <button class="join-vip" onclick="openVipLogin()" >Join VIP</button></br></br></br></br></br>
+
+      </div>
+      {% else %}
+      <div class="container-page">
+        <h3>Login Required for Purchase</h3>
+        <h2>VIP Subscription</h2><h2>VIP Subscription</h2>
+        <div class="subscription-plans">
+            <div class="subscription-plan premium" id="premium">
+              <h2>Premium</h2>
+              <p>Yearly Subscription:  <span class="was">$89.99 </span>
+                <span class="discount"> 40% OFF</span>
+                 </p>
+                 <span class="price-pre">$60.99</span>
+              <p>Offer ends April 25th.</p>
+              <button id="premiun-button">Join VIP</button>
+            </div>
+          
+            <div class="subscription-plan standard" id="standard">
+              <h2>Standard</h2>
+              <p>Yearly Subscription: <span class="price">$50.99</span></p>
+              <button id="yearly-button">Join VIP</button>
+            </div>
+          
+            <div class="subscription-plan basic" id="basic">
+              <h2>Standard</h2>
+              <p>Monthly Subscription: <span class="price">$4.99</span></p>
+              <button id="monthly-button">Join VIP</button>
+            </div>
+          </div>
+        <div class="payment-methods">
+          <div class="payment-method">PayPal</div>
+          <div class="payment-method" id="credit-card">Credit/Debit Card</div>
+            <div class="card-info" id="cardInfo">
+              <div class="card-row">
+                <span class="card-label">Credit card number:</span>
+                <div class="card-input">
+                  <input type="text" placeholder="1234 5678 9012 3456" />
+                </div>
+              </div>
+              <div class="card-row">
+                <span class="card-label">Expiration date (MM/YY):</span>
+                <div class="card-input">
+                  <input type="text" placeholder="MM/YY" />
+                </div>
+              </div>
+              <div class="card-row">
+                <span class="card-label">CVV:</span>
+                <div class="card-input">
+                  <input type="text" placeholder="123" />
+                </div>
+              </div>
+              <span class="span-word">Workhard is equipped with the most authoritative information security certification (PCI-DSS)
+                 in the worldwide payment cards industry to encrypt and protect bank card information.
+                  Please be assured that Workhard does not have the authority to directly access bank card information.</span>
+            </div>
+          
+        </div>
+        <div class="check-boxes">
+            <label for="coupon">Coupon</label>
+            <div class="checkboxx">
+            <input type="text" id="coupon" name="coupon"  autocomplete="off">
+            <button type="submit">Apply</button>
+        </div> </br>
+            <div class="line-coupon"></div>   </br>
+            <div class="checkboxx">
+              <input type="checkbox" id="agree" name="agree" required>
+              <label for="agree">I agree to the <a href="/vip_service_agreement" target="_blank">VIP Service Agreement</a></label>
+            </div>
+            <div id="agree-message" style="color: red; display: none;">Please agree to the VIP Service Agreement.</div>
+          </div>
+        <button class="join-vip"  onclick="openVipunLogin()">Join VIP</button></br></br></br></br></br>
+      </div>
+      {% endif %}
+
+
+
+
+      <script>
+         function openVipunLogin() {
+          var agreeCheckbox = document.getElementById("agree");
+          var messageElement = document.getElementById("agree-message");
+          if (!agreeCheckbox.checked) {
+              messageElement.style.display = "block"; // Show message if checkbox is not checked
+          } else {
+              messageElement.style.display = "none"; // Hide message if checkbox is checked
+              window.location.href = '/login'; // Redirect to the login page
+          }
+        }
+
+        function openVipLogin() {
+          var agreeCheckbox = document.getElementById("agreed");
+          var messageElement = document.getElementById("agree-message");
+          if (!agreeCheckbox.checked) {
+              messageElement.style.display = "block"; // Show message if checkbox is not checked
+          } else {
+              messageElement.style.display = "none"; // Hide message if checkbox is checked
+              window.location.href = '/contract'; // Redirect to the login page
+          }
+        }
+
+        document.getElementById('paypal').addEventListener('click', function() {
+          var cardpaypal = document.getElementById('card-paypal');
+          cardpaypal.style.display = cardpaypal.style.display === 'block'? 'none':'block';
+        });
+
+        document.getElementById('credit-card').addEventListener('click', function() {
+          var cardInfo = document.getElementById('cardInfo');
+          cardInfo.style.display = cardInfo.style.display === 'block'? 'none':'block';
+        });
+
+        document.getElementById('premiun-button').addEventListener('click', function() {
+          var standard = document.getElementById('standard');
+          var basic = document.getElementById('basic');
+          standard.style.display = standard.style.display === 'none' ? 'block' : 'none';
+          basic.style.display = basic.style.display === 'none' ? 'block' : 'none';
+        });
+        document.getElementById('yearly-button').addEventListener('click', function() {
+          var premium = document.getElementById('premium');
+          var basic = document.getElementById('basic');
+          premium.style.display = premium.style.display === 'none' ? 'block' : 'none';
+          basic.style.display = basic.style.display === 'none' ? 'block' : 'none';
+        });
+        document.getElementById('monthly-button').addEventListener('click', function() {
+          var premium = document.getElementById('premium');
+          var standard = document.getElementById('standard');
+          premium.style.display = premium.style.display === 'none' ? 'block' : 'none';
+          standard.style.display = standard.style.display === 'none' ? 'block' : 'none';
+        });
+
+      </script>
+
+
+<script src="/static/js/script.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+<footer>
+    <p>&copy; 2024 WorkHard. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
